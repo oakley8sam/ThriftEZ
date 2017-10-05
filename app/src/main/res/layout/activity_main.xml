@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#60f3ff"
+    tools:context="com.oakley8sam.thriftez.MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1"
+        app:layout_constraintDimensionRatio="w,1:1"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Button
+            android:id="@+id/recordButton"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_weight="0.22"
+            android:onClick="goToRecord"
+            android:text="Record An Expense"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/viewButton"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_weight="0.21"
+            android:onClick="goToExpenses"
+            android:text="View Expenses"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_weight="0.29"
+            android:onClick="goToEdit"
+            android:text="View/Edit Budget"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/calendarButton"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_weight="0.24"
+            android:text="View Calendar"
+            android:textSize="40sp" />
+        <!--android:onClick="goToCalendar"-->/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
