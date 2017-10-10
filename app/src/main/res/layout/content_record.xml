@@ -20,9 +20,9 @@
             android:id="@+id/categorySpinner"
             android:layout_width="match_parent"
             android:layout_height="75dp"
+            android:theme="@style/ThemeSpinner"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:theme="@style/ThemeSpinner"/>
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/categorySpinnerLabel"
