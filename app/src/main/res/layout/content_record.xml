@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            android:theme="@style/ThemeSpinner"/>
 
         <TextView
             android:id="@+id/categorySpinnerLabel"
@@ -49,21 +50,24 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:backgroundTint="@color/colorBlack" />
 
                 <Spinner
                     android:id="@+id/monthField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack"/>
+                    android:textColor="@color/colorBlack"
+                    android:theme="@style/ThemeSpinner"/>
 
                 <Spinner
                     android:id="@+id/dayField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorBlack"
+                    android:theme="@style/ThemeSpinner"/>
 
             </LinearLayout>
 
@@ -108,7 +112,8 @@
             android:layout_height="75dp"
             android:ems="10"
             android:textColor="#000000"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:backgroundTint="@color/colorBlack" />
 
         <TextView
             android:id="@+id/amountLabel"
@@ -124,7 +129,8 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:textColor="#000000"
-            android:maxLength="100" />
+            android:maxLength="100"
+            android:backgroundTint="@color/colorBlack"/>
 
         <TextView
             android:id="@+id/notesLabel"

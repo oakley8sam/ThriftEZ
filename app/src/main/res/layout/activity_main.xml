@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#60f3ff"
+    android:background="#ddf8ff"
     tools:context="com.oakley8sam.thriftez.MainActivity">
 
     <LinearLayout

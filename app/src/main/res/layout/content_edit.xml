@@ -26,20 +26,23 @@
             <TextView
                 android:layout_column="1"
                 android:padding="10dip"
-                android:text="AmtSpent"
+                android:text="Spent"
+                android:textAlignment="center"
                 android:textColor="#ff0000" />
 
             <TextView
                 android:layout_column="1"
                 android:padding="10dip"
                 android:text="Total"
-                android:textColor="#000000"/>
+                android:textAlignment="center"
+                android:textColor="#000000" />
 
             <TextView
                 android:layout_column="1"
                 android:padding="10dip"
                 android:text="Remaining"
-                android:textColor="#00ff00"/>
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_green_dark" />
         </TableRow>
 
         <TableRow
