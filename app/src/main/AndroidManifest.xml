@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".recordActivity"
             android:label="Record an Expense"
@@ -24,21 +25,50 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.MainActivity" />
         </activity>
+
         <activity
             android:name=".editActivity"
             android:label="View/Edit Budget"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.oakley8sam.thriftez.MainActivity" />
+                android:value="com.oakley8sam.thriftez.editActivity" />
         </activity>
+
         <activity
-            android:name=".chooseEditActivity"
-            android:label="Choose an Edit"
-            android:parentActivityName=".editActivity">
+        android:name=".chooseEditActivity"
+        android:label="Choose an Edit"
+        android:parentActivityName=".editActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.oakley8sam.thriftez.chooseEditActivity" />
+        </activity>
+
+        <activity
+            android:name=".deleteCategoryActivity"
+            android:label="Delete a Category"
+            android:parentActivityName=".chooseEditActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.oakley8sam.thriftez.chooseEditActivity" />
+                android:value="com.oakley8sam.thriftez.deleteCategoryActivity" />
+        </activity>
+
+        <activity
+            android:name=".addCategoryActivity"
+            android:label="Add a new Category"
+            android:parentActivityName=".chooseEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.oakley8sam.thriftez.addCategoryActivity" />
+        </activity>
+
+        <activity
+            android:name=".editCategoryActivity"
+            android:label="Edit an existing Category"
+            android:parentActivityName=".chooseEditActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.oakley8sam.thriftez.editCategoryActivity" />
         </activity>
 
     </application>

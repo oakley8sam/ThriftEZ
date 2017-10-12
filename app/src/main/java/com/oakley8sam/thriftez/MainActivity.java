@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, recordActivity.class));
     }
 
-    public void goToExpenses(View v){
+    /* public void goToExpenses(View v){
         //startActivity(new Intent(MainActivity.this, expensesActivity.class));
-    }
+    } */
 
     public void goToEdit(View v){
         startActivity(new Intent(MainActivity.this, editActivity.class));
