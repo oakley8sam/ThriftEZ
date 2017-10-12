@@ -8,28 +8,35 @@
     tools:context="com.oakley8sam.thriftez.MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="345dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:weightSum="1"
-        app:layout_constraintDimensionRatio="w,1:1"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <Button
             android:id="@+id/recordButton"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.22"
             android:onClick="goToRecord"
             android:text="Record An Expense"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/viewButton"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.21"
             android:onClick="goToExpenses"
             android:text="View Expenses"
@@ -38,20 +45,20 @@
         <Button
             android:id="@+id/editButton"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.29"
             android:onClick="goToEdit"
             android:text="View/Edit Budget"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/calendarButton"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.24"
             android:text="View Calendar"
             android:textSize="40sp" />
-        <!--android:onClick="goToCalendar"-->/>
+        <!--android:onClick="goToCalendar"-->
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -19,8 +19,7 @@
         <activity
             android:name=".recordActivity"
             android:label="Record an Expense"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.MainActivity" />
@@ -28,8 +27,7 @@
         <activity
             android:name=".editActivity"
             android:label="View/Edit Budget"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.MainActivity" />

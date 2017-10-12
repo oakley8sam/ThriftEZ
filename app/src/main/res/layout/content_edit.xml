@@ -8,88 +8,97 @@
     tools:context="com.oakley8sam.thriftez.editActivity"
     tools:showIn="@layout/activity_edit">
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:stretchColumns="1">
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.5">
 
-        <TableRow
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:stretchColumns="1"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="16dp">
 
-            <TextView
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="Category"
-                android:textColor="#000000" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_column="1"
-                android:padding="10dip"
-                android:text="Spent"
-                android:textAlignment="center"
-                android:textColor="#ff0000" />
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Category"
+                    android:textColor="#000000" />
 
-            <TextView
-                android:layout_column="1"
-                android:padding="10dip"
-                android:text="Total"
-                android:textAlignment="center"
-                android:textColor="#000000" />
+                <TextView
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:text="Spent"
+                    android:textAlignment="center"
+                    android:textColor="#ff0000" />
 
-            <TextView
-                android:layout_column="1"
-                android:padding="10dip"
-                android:text="Remaining"
-                android:textAlignment="center"
-                android:textColor="@android:color/holo_green_dark" />
-        </TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:text="Total"
+                    android:textAlignment="center"
+                    android:textColor="#000000" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:text="Remaining"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_green_dark" />
+            </TableRow>
 
-            <TextView
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="Category"
-                android:textColor="#000000" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_column="1"
-                android:padding="10dip"
-                android:text="AmtSpent"
-                android:textColor="#ff0000" />
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Category"
+                    android:textColor="#000000" />
 
-            <TextView
-                android:layout_column="1"
-                android:padding="10dip"
-                android:text="Total"
-                android:textColor="#000000"/>
+                <TextView
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:text="AmtSpent"
+                    android:textColor="#ff0000" />
 
-            <TextView
-                android:layout_column="1"
-                android:padding="10dip"
-                android:text="Remaining"
-                android:textColor="#00ff00"/>
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:text="Total"
+                    android:textColor="#000000" />
 
-    <RelativeLayout
-        android:layout_width="395dp"
-        android:layout_height="587dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+                <TextView
+                    android:layout_column="1"
+                    android:padding="10dip"
+                    android:text="Remaining"
+                    android:textColor="#00ff00" />
+
+            </TableRow>
+        </TableLayout>
 
         <Button
-                android:id="@+id/goToEditButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:text="Edit This Budget"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
-    </RelativeLayout>
+            android:id="@+id/goToEditButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:text="Edit This Budget"
+            tools:layout_editor_absoluteX="131dp"
+            tools:layout_editor_absoluteY="74dp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

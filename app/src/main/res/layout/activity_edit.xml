@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.oakley8sam.thriftez.editActivity"
     android:background="#ddf8ff" >
+
     <include layout="@layout/content_edit" />
 
 </android.support.design.widget.CoordinatorLayout>
