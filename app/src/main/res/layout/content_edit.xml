@@ -97,6 +97,7 @@
             android:layout_centerHorizontal="true"
             android:layout_weight="1"
             android:text="Edit This Budget"
+            android:onClick="goToChooseEdit"
             tools:layout_editor_absoluteX="131dp"
             tools:layout_editor_absoluteY="74dp" />
     </LinearLayout>

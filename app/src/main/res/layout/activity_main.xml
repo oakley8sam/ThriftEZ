@@ -9,15 +9,12 @@
 
     <LinearLayout
         android:layout_width="345dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,8 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.21"
             android:onClick="goToExpenses"
-            android:text="View Expenses"
-            android:textSize="40sp" />
+            android:text="View Expenses\n(Under Construction)"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/editButton"
@@ -56,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.24"
-            android:text="View Calendar"
-            android:textSize="40sp" />
+            android:text="View Calendar\n(Under Construction)"
+            android:textSize="24sp" />
         <!--android:onClick="goToCalendar"-->
     </LinearLayout>
 

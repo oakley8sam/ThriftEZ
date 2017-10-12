@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_weight="0.22"
-            android:onClick="goToRecord"
+            android:onClick="goToDeleteCategory"
             android:text="Delete a Category"
             android:textSize="30sp" />
 
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_weight="0.21"
-            android:onClick="goToExpenses"
+            android:onClick="goToAddCategory"
             android:text="Add a Category"
             android:textSize="40sp" />
 
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_weight="0.29"
-            android:onClick="goToEdit"
+            android:onClick="goToEditCategory"
             android:text="Edit a Category"
             android:textSize="40sp" />
 

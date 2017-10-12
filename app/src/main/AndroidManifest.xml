@@ -32,6 +32,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.MainActivity" />
         </activity>
+        <activity
+            android:name=".chooseEditActivity"
+            android:label="Choose an Edit"
+            android:parentActivityName=".editActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.oakley8sam.thriftez.chooseEditActivity" />
+        </activity>
 
     </application>
 
