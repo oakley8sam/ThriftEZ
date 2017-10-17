@@ -1,5 +1,6 @@
 package com.oakley8sam.thriftez;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
@@ -28,6 +29,7 @@ public class recordActivity extends AppCompatActivity {
     ArrayAdapter<Integer> daySpinnerAdapter;
     ArrayAdapter monthSpinnerAdapter;
 
+    Intent intent = new Intent();
     ArrayList<String> categoryList = new ArrayList<String>();
     ArrayList<Integer> daysList= new ArrayList<Integer>();
 

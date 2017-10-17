@@ -14,7 +14,9 @@ public class chooseEditActivity extends AppCompatActivity {
     }
 
     public void goToDeleteCategory(View v){
-        startActivity(new Intent(chooseEditActivity.this, deleteCategoryActivity.class));
+        Intent intent = new Intent(chooseEditActivity.this, deleteCategoryActivity.class);
+        //intent.putStringArrayListExtra("catList", getIntent().getStringArrayListExtra("catList"));
+        startActivity(intent);
     }
 
     public void goToAddCategory(View v){

@@ -19,7 +19,9 @@ public class editActivity extends AppCompatActivity {
     }
 
     public void goToChooseEdit(View v){
-        startActivity(new Intent(editActivity.this, chooseEditActivity.class));
+        Intent intent = new Intent(editActivity.this, chooseEditActivity.class);
+        //intent.putStringArrayListExtra("catList", getIntent().getStringArrayListExtra("catListt"));
+        startActivity(intent);
     }
 
 }
