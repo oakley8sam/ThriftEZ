@@ -14,13 +14,11 @@ public class editActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void goToChooseEdit(View v){
         Intent intent = new Intent(editActivity.this, chooseEditActivity.class);
-        //intent.putStringArrayListExtra("catList", getIntent().getStringArrayListExtra("catListt"));
         startActivity(intent);
     }
 

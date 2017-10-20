@@ -109,6 +109,7 @@
                 android:elevation="0dp"
                 android:text="DELETE"
                 android:textAlignment="center"
+                android:onClick="deleteCategory"
                 app:layout_constraintLeft_toLeftOf="@+id/space"
                 app:layout_constraintRight_toRightOf="@+id/space"
                 app:layout_constraintTop_toBottomOf="@+id/space"

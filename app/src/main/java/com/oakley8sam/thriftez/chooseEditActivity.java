@@ -13,16 +13,18 @@ public class chooseEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_edit);
     }
 
+    //goes to deleteCategory activity
     public void goToDeleteCategory(View v){
         Intent intent = new Intent(chooseEditActivity.this, deleteCategoryActivity.class);
-        //intent.putStringArrayListExtra("catList", getIntent().getStringArrayListExtra("catList"));
         startActivity(intent);
     }
 
+    //goes to addCategory Activity
     public void goToAddCategory(View v){
         startActivity(new Intent(chooseEditActivity.this, addCategoryActivity.class));
     }
 
+    //goes to editCategory activity
     public void goToEditCategory(View v){
         startActivity(new Intent(chooseEditActivity.this, editCategoryActivity.class));
     }

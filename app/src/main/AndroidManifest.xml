@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".RealmInit">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +18,14 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".recordActivity"
-            android:label="Record an Expense"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.oakley8sam.thriftez.MainActivity" />
-        </activity>
+            <activity
+                android:name=".recordActivity"
+                android:label="Record an Expense"
+                android:parentActivityName=".MainActivity">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.oakley8sam.thriftez.MainActivity" />
+            </activity>
 
         <activity
             android:name=".editActivity"

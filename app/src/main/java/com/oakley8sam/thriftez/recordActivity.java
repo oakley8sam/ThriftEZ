@@ -25,11 +25,12 @@ import java.util.List;
 import java.util.Set;
 
 public class recordActivity extends AppCompatActivity {
+    //instance variables, including spinner adapters, ArrayLists, and specific sets used to fill
+    //the day spinner
     ArrayAdapter<String> categorySpinnerAdapter;
     ArrayAdapter<Integer> daySpinnerAdapter;
     ArrayAdapter monthSpinnerAdapter;
 
-    Intent intent = new Intent();
     ArrayList<String> categoryList = new ArrayList<String>();
     ArrayList<Integer> daysList= new ArrayList<Integer>();
 
@@ -49,6 +50,8 @@ public class recordActivity extends AppCompatActivity {
         categoryList.add("Food");
         categoryList.add("Rent");
 
+        //Creates and fills spinners with appropriate items.
+        //TODO: FILL CATEGORY SPINNER WITH REALM CATEGORIES, NOT HARD CODED CATEGORIES
         Spinner categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
         categorySpinnerAdapter = new ArrayAdapter<String> (this, R.layout.spinner_item, categoryList);
         categorySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -66,6 +69,8 @@ public class recordActivity extends AppCompatActivity {
         daySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         daySpinner.setAdapter(daySpinnerAdapter);
 
+        //uses an onTouchListener to fill day spinner with appropriate values based on month and
+        //year at the time of the spinner's opening.
         daySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
