@@ -48,6 +48,7 @@ public class addCategoryActivity extends AppCompatActivity {
                 budgetToChange.addCategory(catToAdd);
             }
         });
+        finish();
     }
 
     //overrides onDestroy to close realm

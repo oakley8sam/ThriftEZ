@@ -16,15 +16,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.5">
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="83dp"
             android:stretchColumns="1"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="16dp">
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -34,60 +35,45 @@
                     android:layout_column="1"
                     android:padding="3dip"
                     android:text="Category"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_column="1"
-                    android:padding="10dip"
+                    android:padding="25dip"
                     android:text="Spent"
                     android:textAlignment="center"
-                    android:textColor="#ff0000" />
+                    android:textColor="#ff0000"
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_column="1"
-                    android:padding="10dip"
-                    android:text="Total"
+                    android:padding="25dip"
+                    android:text="Current"
                     android:textAlignment="center"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_column="1"
-                    android:padding="10dip"
-                    android:text="Remaining"
+                    android:padding="25dip"
+                    android:text="Max"
                     android:textAlignment="center"
-                    android:textColor="@android:color/holo_green_dark" />
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="20dp"/>
+
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_column="1"
-                    android:padding="3dip"
-                    android:text="Category"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_column="1"
-                    android:padding="10dip"
-                    android:text="AmtSpent"
-                    android:textColor="#ff0000" />
-
-                <TextView
-                    android:layout_column="1"
-                    android:padding="10dip"
-                    android:text="Total"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_column="1"
-                    android:padding="10dip"
-                    android:text="Remaining"
-                    android:textColor="#00ff00" />
-
-            </TableRow>
         </TableLayout>
+
+        <TextView
+            android:id="@+id/budgetInfoText"
+            android:layout_width="match_parent"
+            android:layout_height="433dp"
+            android:maxLines="40"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textSize="15dp"/>
 
         <Button
             android:id="@+id/goToEditButton"

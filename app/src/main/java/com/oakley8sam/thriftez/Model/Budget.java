@@ -52,22 +52,18 @@ public class Budget extends RealmObject{
 
     //removes a category from the list, decreasing max and current funds
     public boolean removeCategory(BudgetCategory cat){
-        BudgetCategory catToRemove = null;
-        for(int i = 0; i < categoryList.size(); i++){
-            if (categoryList.get(i).getName() == cat.getName()){
-                catToRemove = categoryList.get(i);
-                break;
+        String nameToRemove = cat.getName();
+        int listSize = categoryList.size();
+        for(int i = 0; i < listSize; i++){
+            if (categoryList.get(i).getName().equals(nameToRemove)) {
+                BudgetCategory catToRemove = new BudgetCategory(categoryList.get(i));
+                totalMaxFunds -= catToRemove.getMaxBalance();
+                totalCurrFunds -= catToRemove.getCurrBalance();
+                categoryList.remove(i);
+                return true;
             }
-
         }
-        if (catToRemove == null)
-            return false;
-
-        totalMaxFunds -= catToRemove.getMaxBalance();
-        totalCurrFunds -= catToRemove.getCurrBalance();
-        categoryList.remove(catToRemove);
-
-        return true;
+        return false;
     }
 
     // returns the names of the categories as a ArrayList
@@ -77,5 +73,28 @@ public class Budget extends RealmObject{
             catList.add(categoryList.get(i).getName());
         }
         return catList;
+    }
+
+
+    //BudgetCategory toString, used to print all of a budget's info 
+    @Override
+    public String toString() {
+        String budgetInfo = "";
+        String toConcat = "";
+        for (int i=0; i < categoryList.size(); i++){
+            BudgetCategory currCat = categoryList.get(i);
+            String name = currCat.getName();
+            float currAmt = currCat.getCurrBalance();
+            float maxAmt = currCat.getMaxBalance();
+            float spent = maxAmt-currAmt;
+            //TODO: FIND A BETTER FORMATTING METHOD
+            budgetInfo += String.format("%-6s                     $%.2f                 $%.2f          $%.2f", name, spent, currAmt, maxAmt);
+            budgetInfo += '\n';
+
+        }
+        float totalSpent = totalMaxFunds-totalCurrFunds;
+        budgetInfo += String.format("TOTAL:            $%.2f              $%.2f              $%.2f", totalSpent, totalCurrFunds, totalMaxFunds);
+
+        return budgetInfo;
     }
 }

@@ -42,24 +42,28 @@ public class deleteCategoryActivity extends AppCompatActivity {
                 Budget budgetToChange = budget.get(0);
                 catList = budgetToChange.getCatList();
 
+                Log.d("length of catlist", "There are " + catList.size() + " cats");
+
             }
         });
 
-        Spinner delSpinner = (Spinner) findViewById(R.id.toDeleteSpinner);
+        delSpinner = (Spinner) findViewById(R.id.toDeleteSpinner);
         categorySpinnerAdapter = new ArrayAdapter<String> (this, R.layout.spinner_item, catList);
         categorySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinnerAdapter.notifyDataSetChanged();
         delSpinner.setAdapter(categorySpinnerAdapter);
 
     }
 
-
     //deletes the category corresponding to the name of the item in the spinner at the time of
     //button press
     public void deleteCategory(View v) {
+
         Log.d("in deleteCategory", "Beginning deleteCategory");
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgrealm) {
+
                 Log.d("before results", "Before RealmResults");
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
@@ -67,12 +71,15 @@ public class deleteCategoryActivity extends AppCompatActivity {
                 BudgetCategory catToRemove = bgrealm.createObject(BudgetCategory.class);
                 catToRemove.setName(delSpinner.getSelectedItem().toString());
 
+                Log.d("removal name", "Removing cat with name: " + catToRemove.getName());
                 Budget budgetToChange = budget.get(0);
                 budgetToChange.removeCategory(catToRemove);
                 catList.remove(delSpinner.getSelectedItemPosition());
+
                 Log.d("exiting delete", "Exiting deleteCategory");
             }
         });
+        finish();
     }
 
     //overrides onDestroy to close realm

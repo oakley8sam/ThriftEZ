@@ -29,6 +29,14 @@ public class BudgetCategory extends RealmObject{
         expenditureList = null;
     }
 
+    //copy constructor
+    public BudgetCategory(BudgetCategory other){
+        catName = other.getName();
+        maxBalance = other.getMaxBalance();
+        currBalance = other.getCurrBalance();
+        expenditureList = other.getExpenditureList();
+    }
+
     //getters and setters for name, max, and curr balance
     public String getName() {
         return catName;
@@ -52,5 +60,13 @@ public class BudgetCategory extends RealmObject{
 
     public void setCurrBalance(float currBalance) {
         this.currBalance = currBalance;
+    }
+
+    public void setExpenditureList(RealmList<RealmString> otherList){
+        expenditureList = otherList;
+    }
+
+    public RealmList<RealmString> getExpenditureList(){
+        return expenditureList;
     }
 }

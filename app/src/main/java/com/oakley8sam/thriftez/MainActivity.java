@@ -3,11 +3,13 @@ package com.oakley8sam.thriftez;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.oakley8sam.thriftez.Model.Budget;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
     //creates realm instance for use in this class
@@ -22,13 +24,17 @@ public class MainActivity extends AppCompatActivity {
         //instantiates realm for use in this class
         realm = Realm.getDefaultInstance();
 
-        //adds a budget to the realm
+        //adds a budget to the realm if one does not already exist
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
-                Budget budget = bgRealm.createObject(Budget.class);
-                budget.setTotalCurrFunds(0);
-                budget.setTotalMaxFunds(0);
+                RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
+                if(budgets.size() != 1) {
+                    Budget budget = bgRealm.createObject(Budget.class);
+                    budget.setTotalCurrFunds(0);
+                    budget.setTotalMaxFunds(0);
+                }
+                Log.d("number of budgets", "There are: " + budgets.size() + " budgets");
             }
         });
     }
