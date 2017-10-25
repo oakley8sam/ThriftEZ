@@ -1,29 +1,28 @@
 package com.oakley8sam.thriftez;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.oakley8sam.thriftez.Model.Budget;
+import com.oakley8sam.thriftez.Model.BudgetCategory;
+import com.oakley8sam.thriftez.Model.Expenditure;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
+
+//TODO: CLEAN CLASS
 public class recordActivity extends AppCompatActivity {
     //instance variables, including spinner adapters, ArrayLists, and specific sets used to fill
     //the day spinner
@@ -31,40 +30,59 @@ public class recordActivity extends AppCompatActivity {
     ArrayAdapter<Integer> daySpinnerAdapter;
     ArrayAdapter monthSpinnerAdapter;
 
-    ArrayList<String> categoryList = new ArrayList<String>();
+    ArrayList<String> catList;
     ArrayList<Integer> daysList= new ArrayList<Integer>();
 
     Set<String> longMonths = new HashSet<String>(Arrays.asList("January", "March", "May", "July",
                                                   "August", "October", "December"));
     Set<String> shortMonths = new HashSet<String>(Arrays.asList("April", "June", "September", "November"));
 
+    private Realm realm;
+
+    private EditText amtText, notesText, yearText;
+
+    Spinner categorySpinner, daySpinner, monthSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
+        realm = Realm.getDefaultInstance();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final EditText yearText = (EditText) findViewById(R.id.yearField);
+        yearText = (EditText) findViewById(R.id.yearField);
+        amtText = (EditText) findViewById(R.id.amountBox);
+        notesText = (EditText) findViewById(R.id.notesBox);
 
-        categoryList.add("Food");
-        categoryList.add("Rent");
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm bgrealm) {
+                RealmResults<Budget> budget = realm.where(Budget.class).findAll();
+                budget.load();
+                Budget budgetToChange = budget.get(0);
+                catList = budgetToChange.getCatList();
+
+                Log.d("length of catlist", "There are " + catList.size() + " cats");
+
+            }
+        });
 
         //Creates and fills spinners with appropriate items.
-        //TODO: FILL CATEGORY SPINNER WITH REALM CATEGORIES, NOT HARD CODED CATEGORIES
-        Spinner categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
-        categorySpinnerAdapter = new ArrayAdapter<String> (this, R.layout.spinner_item, categoryList);
+        categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        categorySpinnerAdapter = new ArrayAdapter<String> (this, R.layout.spinner_item, catList);
         categorySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
 
-        final Spinner monthSpinner = (Spinner) findViewById(R.id.monthField);
+        monthSpinner = (Spinner) findViewById(R.id.monthField);
         monthSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.months, R.layout.spinner_item);
         monthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(monthSpinnerAdapter);
 
 
-        Spinner daySpinner = (Spinner) findViewById(R.id.dayField);
+        daySpinner = (Spinner) findViewById(R.id.dayField);
         daySpinnerAdapter = new ArrayAdapter<Integer> (this, R.layout.spinner_item, daysList);
         daySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         daySpinner.setAdapter(daySpinnerAdapter);
@@ -94,6 +112,44 @@ public class recordActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    //records an expense in the correct categories expenditure list, updating the budget info
+    //in the process
+    //TODO: GET THIS WORKING
+    public void recordExpense(View v){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm bgrealm) {
+                Log.d("before results", "Before RealmResults");
+                RealmResults<Budget> budget = realm.where(Budget.class).findAll();
+                budget.load();
+
+
+                Expenditure expenseToAdd = bgrealm.createObject(Expenditure.class);
+                float amtSpent = Float.parseFloat(amtText.getText().toString());
+                int day = Integer.parseInt(daySpinner.getSelectedItem().toString());
+                int year = Integer.parseInt(yearText.getText().toString());
+                expenseToAdd.setAmtSpent(amtSpent);
+                expenseToAdd.setDay(day);
+                expenseToAdd.setYear(year);
+                expenseToAdd.setNote(notesText.getText().toString());
+                expenseToAdd.setMonth(monthSpinner.getSelectedItem().toString());
+
+                Budget budgetToChange = budget.get(0);
+                //TODO: FINISH AFTER CREATING BUDGET GET CATEGORY FUNCTION 
+                /*
+                float amt = Float.valueOf(catAmt.getText().toString());
+                BudgetCategory catToAdd = bgrealm.createObject(BudgetCategory.class);
+                catToAdd.setName(catName.getText().toString());
+                catToAdd.setCurrBalance(amt);
+                catToAdd.setMaxBalance(amt);
+                Budget budgetToChange = budget.get(0);
+                budgetToChange.addCategory(catToAdd);
+                */
+            }
+        });
+        finish();
     }
 }
 

@@ -10,7 +10,7 @@ public class RealmInit extends Application{
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().name("ThriftEZRealm.realm").build();
+        RealmConfiguration config = new RealmConfiguration.Builder().name("ThriftEZRealm.realm").deleteRealmIfMigrationNeeded().build();
         Realm.setDefaultConfiguration(config);
     }
 }

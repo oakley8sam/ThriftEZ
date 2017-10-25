@@ -11,7 +11,7 @@ public class BudgetCategory extends RealmObject{
     //instance variables, including name, max and curr balances, and a realmlist of expenditures
     String catName;
     float maxBalance, currBalance;
-    RealmList<RealmString> expenditureList = new RealmList<RealmString>();
+    RealmList<Expenditure> expenditureList = new RealmList<Expenditure>();
 
     //constructors
     public BudgetCategory(){
@@ -62,11 +62,11 @@ public class BudgetCategory extends RealmObject{
         this.currBalance = currBalance;
     }
 
-    public void setExpenditureList(RealmList<RealmString> otherList){
+    public void setExpenditureList(RealmList<Expenditure> otherList){
         expenditureList = otherList;
     }
 
-    public RealmList<RealmString> getExpenditureList(){
+    public RealmList<Expenditure> getExpenditureList(){
         return expenditureList;
     }
 }

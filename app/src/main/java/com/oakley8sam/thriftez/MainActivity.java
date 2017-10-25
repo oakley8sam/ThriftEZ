@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
 
         //adds a budget to the realm if one does not already exist
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("number of budgets", "There are: " + budgets.size() + " budgets");
             }
         });
+
     }
 
     //goes to record activity
