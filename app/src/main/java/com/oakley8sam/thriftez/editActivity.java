@@ -1,6 +1,7 @@
 package com.oakley8sam.thriftez;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -34,6 +35,9 @@ public class editActivity extends AppCompatActivity {
 
         budgetInfoText = (TextView) findViewById(R.id.budgetInfoText);
         budgetInfoText.setMovementMethod(new ScrollingMovementMethod());
+        budgetInfoText.setTextScaleX(1.5f);
+        budgetInfoText.setTextSize(12);
+        budgetInfoText.setTypeface(Typeface.MONOSPACE);
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override

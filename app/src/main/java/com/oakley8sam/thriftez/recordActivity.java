@@ -137,7 +137,6 @@ public class recordActivity extends AppCompatActivity {
                 expenseToAdd.setMonth(monthSpinner.getSelectedItem().toString());
 
                 Budget budgetToChange = budget.get(0);
-                //TODO: FINISH AFTER CREATING BUDGET GET CATEGORY FUNCTION 
                 /*
                 float amt = Float.valueOf(catAmt.getText().toString());
                 BudgetCategory catToAdd = bgrealm.createObject(BudgetCategory.class);
