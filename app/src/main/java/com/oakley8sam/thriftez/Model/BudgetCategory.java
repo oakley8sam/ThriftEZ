@@ -69,4 +69,9 @@ public class BudgetCategory extends RealmObject{
     public RealmList<Expenditure> getExpenditureList(){
         return expenditureList;
     }
+
+    public void addExpenditure(Expenditure exp){
+        currBalance -= exp.getAmtSpent();
+        expenditureList.add(exp);
+    }
 }

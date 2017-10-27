@@ -25,4 +25,5 @@
     </string-array>
 
     <string name="title_activity_edit">editActivity</string>
+    <string name="title_activity_expenses">expensesActivity</string>
 </resources>

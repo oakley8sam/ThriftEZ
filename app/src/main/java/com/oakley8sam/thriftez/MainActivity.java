@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //goes to expenses activity (currently non-functioning)
-    /* public void goToExpenses(View v){
-        //startActivity(new Intent(MainActivity.this, expensesActivity.class));
-    } */
+    //goes to expenses activity
+     public void goToExpenses(View v){
+        startActivity(new Intent(MainActivity.this, expensesActivity.class));
+    }
 
     //goes to edit activity
     public void goToEdit(View v){

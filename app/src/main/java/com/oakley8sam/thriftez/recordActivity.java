@@ -62,7 +62,7 @@ public class recordActivity extends AppCompatActivity {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
                 Budget budgetToChange = budget.get(0);
-                catList = budgetToChange.getCatList();
+                catList = budgetToChange.getCatListString();
 
                 Log.d("length of catlist", "There are " + catList.size() + " cats");
 
@@ -136,16 +136,21 @@ public class recordActivity extends AppCompatActivity {
                 expenseToAdd.setNote(notesText.getText().toString());
                 expenseToAdd.setMonth(monthSpinner.getSelectedItem().toString());
 
+                Log.d("toString test", expenseToAdd.toString());
+
                 Budget budgetToChange = budget.get(0);
-                /*
-                float amt = Float.valueOf(catAmt.getText().toString());
-                BudgetCategory catToAdd = bgrealm.createObject(BudgetCategory.class);
-                catToAdd.setName(catName.getText().toString());
-                catToAdd.setCurrBalance(amt);
-                catToAdd.setMaxBalance(amt);
-                Budget budgetToChange = budget.get(0);
-                budgetToChange.addCategory(catToAdd);
-                */
+
+                int budgetSize = budgetToChange.getCatList().size();
+                for (int i = 0; i<budgetSize; i++){
+                    Log.d("for loop test", categorySpinner.getSelectedItem().toString());
+                    Log.d("for loop test again", budgetToChange.getCatListString().get(i));
+                    if (categorySpinner.getSelectedItem().toString().equals(budgetToChange.getCatListString().get(i))){
+                        budgetToChange.getCatList().get(i).addExpenditure(expenseToAdd);
+                        budgetToChange.updateFunds();
+                        finish();
+                    }
+                }
+
             }
         });
         finish();

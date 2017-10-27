@@ -88,12 +88,16 @@ public class Budget extends RealmObject{
     }
 
     // returns the names of the categories as a ArrayList
-    public ArrayList<String> getCatList() {
+    public ArrayList<String> getCatListString() {
         ArrayList<String> catList = new ArrayList<String>();
         for (int i = 0; i< categoryList.size(); i++){
             catList.add(categoryList.get(i).getName());
         }
         return catList;
+    }
+
+    public RealmList<BudgetCategory> getCatList(){
+        return categoryList;
     }
 
 

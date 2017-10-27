@@ -1,5 +1,7 @@
 package com.oakley8sam.thriftez.Model;
 
+import android.util.Log;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -53,9 +55,12 @@ public class Expenditure extends RealmObject {
         this.amtSpent = amtSpent;
     }
 
+    //TODO: CLEAN UP
     @Override
     public String toString(){
+        Log.d("run toString", "Running toString");
         String expenditureInfo = "";
+        expenditureInfo += String.format("%f %d/%s/%d %s \n", getAmtSpent(), getDay(), getMonth(), getYear(), getNote());
         return expenditureInfo;
     }
 }

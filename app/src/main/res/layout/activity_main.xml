@@ -35,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.21"
-            android:text="View Expenses\n(Under Construction)"
+            android:text="View Expenses"
+            android:onClick="goToExpenses"
             android:textSize="24sp" />
 
         <Button
@@ -54,7 +55,6 @@
             android:layout_weight="0.24"
             android:text="View Calendar\n(Under Construction)"
             android:textSize="24sp" />
-        <!--android:onClick="goToCalendar"-->
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

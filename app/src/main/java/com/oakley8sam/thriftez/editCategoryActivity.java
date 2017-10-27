@@ -39,7 +39,7 @@ public class editCategoryActivity extends AppCompatActivity {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
                 Budget budgetToChange = budget.get(0);
-                catList = budgetToChange.getCatList();
+                catList = budgetToChange.getCatListString();
 
                 Log.d("length of catlist", "There are " + catList.size() + " cats");
 
