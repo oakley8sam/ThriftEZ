@@ -28,7 +28,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/catText"
                 android:layout_width="104dp"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -40,7 +40,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/spentText"
                 android:layout_width="92dp"
                 android:layout_height="match_parent"
                 android:layout_column="1"
@@ -52,7 +52,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/currText"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -69,7 +69,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/maxText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -84,7 +84,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="425dp"
             android:orientation="horizontal">
 
             <Space
@@ -106,22 +106,64 @@
 
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="19dp"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/goToEditButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:onClick="goToChooseEdit"
-            android:text="Edit This Budget"
-            tools:layout_editor_absoluteX="131dp"
-            tools:layout_editor_absoluteY="74dp" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/goToRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Record"
+                android:onClick="goToRecord"/>
+
+            <Button
+                android:id="@+id/toToView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="View Expenses"
+                android:onClick="goToExpenses"/>
+
+            <Button
+                android:id="@+id/goToCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Calendar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/goToAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add Cat"
+                android:onClick="goToAddCategory"/>
+
+            <Button
+                android:id="@+id/goToDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete Cat"
+                android:onClick="goToDeleteCategory"/>
+
+            <Button
+                android:id="@+id/goToEditCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit Cat"
+                android:onClick="goToEditCategory"/>
+        </LinearLayout>
 
     </LinearLayout>
 

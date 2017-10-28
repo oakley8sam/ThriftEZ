@@ -52,8 +52,6 @@ public class Budget extends RealmObject{
         updateFunds();
     }
 
-    //TODO: CREATE BUDGET GET CATEGORY FUNCTION AND REFACTOR REMOVE AND EDIT TO USE IT INSTEAD OF INNER FOR LOOP
-
     //removes a category from the list, decreasing max and current funds
     public boolean removeCategory(BudgetCategory cat){
         String nameToRemove = cat.getName();

@@ -116,7 +116,6 @@ public class recordActivity extends AppCompatActivity {
 
     //records an expense in the correct categories expenditure list, updating the budget info
     //in the process
-    //TODO: GET THIS WORKING
     public void recordExpense(View v){
         realm.executeTransaction(new Realm.Transaction() {
             @Override

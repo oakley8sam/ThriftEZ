@@ -39,6 +39,21 @@ public class editActivity extends AppCompatActivity {
         budgetInfoText.setTextSize(12);
         budgetInfoText.setTypeface(Typeface.MONOSPACE);
 
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm bgRealm) {
+                RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
+                if(budgets.size() != 1) {
+                    Budget budget = bgRealm.createObject(Budget.class);
+                    budget.setTotalCurrFunds(0);
+                    budget.setTotalMaxFunds(0);
+                }
+                Log.v("number of budgets", "There are: " + budgets.size() + " budgets");
+            }
+        });
+
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgrealm) {
@@ -52,9 +67,51 @@ public class editActivity extends AppCompatActivity {
         budgetInfoText.setText(budg.toString());
     }
 
-    public void goToChooseEdit(View v){
-        Intent intent = new Intent(editActivity.this, chooseEditActivity.class);
+    @Override
+    protected void onResume(){
+        super.onResume();
+        budgetInfoText.setText(budg.toString());
+    }
+
+    //goes to record activity
+    public void goToRecord(View v){
+        Intent intent = new Intent(editActivity.this, recordActivity.class);
         startActivity(intent);
     }
+
+    //goes to expenses activity
+    public void goToExpenses(View v){
+        startActivity(new Intent(editActivity.this, expensesActivity.class));
+    }
+
+    //goes to calendar activity (currently non-functioning)
+    /*public void goToCalendar(View v){
+        startActivity(new Intent(MainActivity.this, calendarActivity.class));
+    }*/
+
+    //goes to deleteCategory activity
+    public void goToDeleteCategory(View v){
+        Intent intent = new Intent(editActivity.this, deleteCategoryActivity.class);
+        startActivity(intent);
+    }
+
+    //goes to addCategory Activity
+    public void goToAddCategory(View v){
+        startActivity(new Intent(editActivity.this, addCategoryActivity.class));
+    }
+
+    //goes to editCategory activity
+    public void goToEditCategory(View v){
+        startActivity(new Intent(editActivity.this, editCategoryActivity.class));
+    }
+
+
+    //overrides onStop to close realm
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
 
 }
