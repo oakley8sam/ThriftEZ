@@ -58,6 +58,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.expensesActivity"/>
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b39b8872d9eb6d20d728fd800c4c4c909beb1879" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

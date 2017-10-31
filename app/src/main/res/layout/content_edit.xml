@@ -163,6 +163,7 @@
                 android:layout_weight="1"
                 android:text="Edit Cat"
                 android:onClick="goToEditCategory"/>
+
         </LinearLayout>
 
     </LinearLayout>
