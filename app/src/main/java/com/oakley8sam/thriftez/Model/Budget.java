@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import java.lang.Math;
+import java.util.Locale;
+
 import io.realm.annotations.PrimaryKey;
 
 /**
@@ -111,21 +113,21 @@ public class Budget extends RealmObject{
             float maxAmt = currCat.getMaxBalance();
             float spent = maxAmt-currAmt;
 
-            String spentString = String.format("$%4.2f",spent);
-            String currAmtString = String.format("$%4.2f",currAmt);
-            String maxAmtString= String.format("$%4.2f",maxAmt);
+            String spentString = String.format(Locale.US,   "$%4.2f",spent);
+            String currAmtString = String.format(Locale.US,"$%4.2f",currAmt);
+            String maxAmtString= String.format(Locale.US,"$%4.2f",maxAmt);
             int maxLength = 8;
 
             budgetInfo += "--------+-------+--------+--------\n";
             budgetInfo += String.format("%-" +maxLength + "s|%-" + (maxLength - 1) + "s|%-"+ (maxLength - 1) + "s|%-"+ (maxLength - 1) + "s\n",name.substring(0, Math.min(name.length(), maxLength)), spentString.substring(0, Math.min(spentString.length(), maxLength)), currAmtString.substring(0, Math.min(currAmtString.length(), maxLength)), maxAmtString.substring(0, Math.min(maxAmtString.length(), maxLength)));
         }
         float totalSpent = totalMaxFunds-totalCurrFunds;
-        String totalSpentString = String.format("$%4.2f", totalSpent);
-        String totalCurrString = String.format("$%4.2f", totalCurrFunds);
-        String totalMaxString = String.format("$%4.2f", totalMaxFunds);
+        String totalSpentString = String.format(Locale.US,"$%4.2f", totalSpent);
+        String totalCurrString = String.format(Locale.US,"$%4.2f", totalCurrFunds);
+        String totalMaxString = String.format(Locale.US,"$%4.2f", totalMaxFunds);
         int maxLength = 8;
         budgetInfo += "--------+-------+--------+--------\n";
-        budgetInfo += String.format("TOTAL:  |%-7s|%-7s|%-7s", totalSpentString.substring(0, Math.min(totalSpentString.length(), maxLength)), totalCurrString.substring(0, Math.min(totalCurrString.length(), maxLength)), totalMaxString.substring(0, Math.min(totalMaxString.length(), maxLength)));
+        budgetInfo += String.format(Locale.US,"TOTAL:  |%-7s|%-7s|%-7s", totalSpentString.substring(0, Math.min(totalSpentString.length(), maxLength)), totalCurrString.substring(0, Math.min(totalCurrString.length(), maxLength)), totalMaxString.substring(0, Math.min(totalMaxString.length(), maxLength)));
 
         return budgetInfo;
     }

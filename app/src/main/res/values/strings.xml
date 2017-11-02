@@ -2,13 +2,6 @@
     <string name="app_name">ThriftEZ</string>
     <string name="title_activity_record">recordActivity</string>
 
-    <string-array name="categories">
-        <item>Food</item>
-        <item>Rent</item>
-        <item>Miscellanious</item>
-    </string-array>
-
-
     <string-array name="months">
         <item>January</item>
         <item>February</item>
