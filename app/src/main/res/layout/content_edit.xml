@@ -31,37 +31,37 @@
                 android:id="@+id/catText"
                 android:layout_width="104dp"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
                 android:layout_weight="1"
                 android:padding="15dip"
                 android:text="Category"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="14sp" />
+            <!--android:layout_column="1"-->
 
             <TextView
                 android:id="@+id/spentText"
                 android:layout_width="92dp"
                 android:layout_height="match_parent"
-                android:layout_column="1"
                 android:layout_weight="1"
                 android:padding="15dip"
                 android:text="Spent"
                 android:textAlignment="center"
                 android:textColor="#ff0000"
                 android:textSize="14sp" />
+            <!--android:layout_column="1"-->
 
             <TextView
                 android:id="@+id/currText"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
                 android:layout_weight="1"
                 android:padding="15dip"
                 android:text="Current"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="14sp" />
+            <!--android:layout_column="1"-->
 
             <Space
                 android:layout_width="14dp"
@@ -72,13 +72,13 @@
                 android:id="@+id/maxText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
                 android:layout_weight="1"
                 android:padding="15dip"
                 android:text="Max"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="14sp" />
+            <!--android:layout_column="1"-->
 
         </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:scrollbars="vertical"
                 android:text="TextView"
                 android:textColor="@color/colorBlack"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 tools:layout_editor_absoluteY="487dp" />
 
         </LinearLayout>

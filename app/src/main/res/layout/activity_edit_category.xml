@@ -30,7 +30,7 @@
             android:orientation="vertical">
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space1"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 app:layout_constraintLeft_toLeftOf="@+id/textView3"
@@ -55,7 +55,7 @@
                 tools:layout_constraintTop_creator="1" />
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space2"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 app:layout_constraintLeft_toLeftOf="@+id/textView3"
@@ -81,7 +81,7 @@
                 tools:layout_constraintTop_creator="1" />
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space3"
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 app:layout_constraintLeft_toLeftOf="@+id/textView3"
@@ -101,7 +101,7 @@
             tools:layout_editor_absoluteY="8dp">
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space4"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 app:layout_constraintLeft_toLeftOf="@+id/textView3"
@@ -149,7 +149,7 @@
                 tools:layout_constraintTop_creator="1" />
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space5"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 app:layout_constraintLeft_toLeftOf="@+id/textView3"
@@ -169,7 +169,7 @@
             tools:layout_editor_absoluteY="8dp">
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -196,7 +196,7 @@
                 tools:layout_constraintTop_creator="1" />
 
             <Space
-                android:id="@+id/space"
+                android:id="@+id/space7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
