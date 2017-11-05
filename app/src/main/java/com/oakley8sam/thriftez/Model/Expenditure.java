@@ -17,6 +17,23 @@ public class Expenditure extends RealmObject {
     int day, year;
     float amtSpent;
 
+    public Expenditure(){
+        note = "";
+        month = "";
+        day = 1;
+        year = 1;
+        amtSpent = 0;
+
+    }
+
+    public Expenditure (String no, String mon, int da, int yr, float amt){
+        note = no;
+        month = mon;
+        day = da;
+        year = yr;
+        amtSpent = amt;
+    }
+
     public String getNote() {
         return note;
     }

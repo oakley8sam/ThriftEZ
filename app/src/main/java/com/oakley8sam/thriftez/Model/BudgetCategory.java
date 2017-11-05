@@ -18,7 +18,7 @@ public class BudgetCategory extends RealmObject{
         catName = null;
         maxBalance = 0;
         currBalance = 0;
-        expenditureList = null;
+       // expenditureList = null;
 
     }
 
@@ -26,7 +26,7 @@ public class BudgetCategory extends RealmObject{
         catName = name;
         maxBalance = maxBal;
         currBalance = maxBal;
-        expenditureList = null;
+        //expenditureList = null;
     }
 
     //copy constructor

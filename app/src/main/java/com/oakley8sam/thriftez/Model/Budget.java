@@ -60,9 +60,6 @@ public class Budget extends RealmObject{
         int listSize = categoryList.size();
         for(int i = 0; i < listSize; i++){
             if (categoryList.get(i).getName().equals(nameToRemove)) {
-                BudgetCategory catToRemove = new BudgetCategory(categoryList.get(i));
-                totalMaxFunds -= catToRemove.getMaxBalance();
-                totalCurrFunds -= catToRemove.getCurrBalance();
                 categoryList.remove(i);
                 updateFunds();
                 return true;
@@ -100,12 +97,10 @@ public class Budget extends RealmObject{
         return categoryList;
     }
 
-
     //BudgetCategory toString, used to print all of a budget's info
     @Override
     public String toString() {
         String budgetInfo = "";
-        String toConcat = "";
         for (int i=0; i < categoryList.size(); i++){
             BudgetCategory currCat = categoryList.get(i);
             String name = currCat.getName();
