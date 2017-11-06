@@ -39,7 +39,8 @@ public class deleteCategoryActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToChange = budget.get(0);
+                /////////////////////////////////////
+                Budget budgetToChange = budget.get(budget.size()-1);
                 catList = budgetToChange.getCatListString();
 
                 Log.d("length of catlist", "There are " + catList.size() + " cats");
@@ -72,7 +73,8 @@ public class deleteCategoryActivity extends AppCompatActivity {
                 catToRemove.setName(delSpinner.getSelectedItem().toString());
 
                 Log.d("removal name", "Removing cat with name: " + catToRemove.getName());
-                Budget budgetToChange = budget.get(0);
+                /////////////////////////////////////////////////////
+                Budget budgetToChange = budget.get(budget.size()-1);
                 budgetToChange.removeCategory(catToRemove);
                 catList.remove(delSpinner.getSelectedItemPosition());
 

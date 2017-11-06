@@ -61,7 +61,8 @@ public class recordActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToChange = budget.get(0);
+                ////////////////////////////////////////////////
+                Budget budgetToChange = budget.get(budget.size()-1);
                 catList = budgetToChange.getCatListString();
 
                 Log.d("length of catlist", "There are " + catList.size() + " cats");

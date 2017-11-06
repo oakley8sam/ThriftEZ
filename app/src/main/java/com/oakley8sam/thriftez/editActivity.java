@@ -17,6 +17,10 @@ import com.oakley8sam.thriftez.Model.Budget;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -24,6 +28,9 @@ public class editActivity extends AppCompatActivity {
     private TextView budgetInfoText;
     private Budget budg;
     private Realm realm;
+
+    ////
+    private Calendar cal = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +46,17 @@ public class editActivity extends AppCompatActivity {
         budgetInfoText.setTextSize(12);
         budgetInfoText.setTypeface(Typeface.MONOSPACE);
 
-
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
-                if(budgets.size() != 1) {
+                Log.d("SIZE", "SIZE: " + budgets.size());
+                if(budgets.size() == 0 || budgets.get(budgets.size()-1).getMonthCreated() != cal.get(Calendar.MONTH)) {
                     Budget budget = bgRealm.createObject(Budget.class);
                     budget.setTotalCurrFunds(0);
                     budget.setTotalMaxFunds(0);
+
+                    budget.setMonthCreated(cal.get(Calendar.MONTH));
                 }
                 Log.v("number of budgets", "There are: " + budgets.size() + " budgets");
             }
@@ -59,7 +68,8 @@ public class editActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToPrint = budget.get(0);
+                /////////////////////////////////////////////
+                Budget budgetToPrint = budget.get(budget.size()-1);
                 budg = budgetToPrint;
             }
         });

@@ -20,6 +20,7 @@ public class Budget extends RealmObject{
     //instance variables, a list of categories, and floats for max and current funds
     RealmList<BudgetCategory> categoryList = new RealmList<BudgetCategory>();
     private float totalMaxFunds, totalCurrFunds;
+    private int monthCreated;
 
     //getters and setters for fund floats
     public float getTotalMaxFunds() {
@@ -37,6 +38,11 @@ public class Budget extends RealmObject{
     public void setTotalCurrFunds(float totalCurrFunds) {
         this.totalCurrFunds = totalCurrFunds;
     }
+
+    public void setMonthCreated(int newMonth){ monthCreated = newMonth; }
+
+    public int getMonthCreated(){return monthCreated;}
+
 
     //updates max and curr funds based on max and curr funds for each category
     public void updateFunds(){
