@@ -20,7 +20,7 @@ public class Budget extends RealmObject{
     //instance variables, a list of categories, and floats for max and current funds
     RealmList<BudgetCategory> categoryList = new RealmList<BudgetCategory>();
     private float totalMaxFunds, totalCurrFunds;
-    private int monthCreated;
+    private int monthCreated, yearCreated;
 
     //getters and setters for fund floats
     public float getTotalMaxFunds() {
@@ -43,6 +43,9 @@ public class Budget extends RealmObject{
 
     public int getMonthCreated(){return monthCreated;}
 
+    public void setYearCreated (int newYear) {yearCreated = newYear;}
+
+    public int getYearCreated(){return yearCreated;}
 
     //updates max and curr funds based on max and curr funds for each category
     public void updateFunds(){
@@ -97,6 +100,24 @@ public class Budget extends RealmObject{
             catList.add(categoryList.get(i).getName());
         }
         return catList;
+    }
+
+    //budget copy constructor
+    //duplicates the current budget's categories and their max vals, does not copy expenditures. Used to refresh the budget at the beginning of the month
+    public void duplicateBudget (Budget other){
+        Log.d("duplicate", "DUPLICATING BUDGET");
+        this.totalMaxFunds = other.totalMaxFunds;
+        Log.d("copee max", "COPEE'S MAX =" +other.totalMaxFunds);
+        Log.d("dupe max", "DUPLICATE'S MAX = " + totalMaxFunds );
+        this.totalCurrFunds = other.totalMaxFunds;
+        Log.d("copee curr", "COPEE's CURR = " + other.totalCurrFunds);
+        Log.d("dupe curr", "DUPLICATE'S CURR = " + totalCurrFunds);
+        this.categoryList = other.categoryList;
+        Log.d("catListSize", "CAT LIST SIZE = " + categoryList.size());
+        for (int i = 0; i < categoryList.size(); i++){
+            categoryList.get(i).setCurrBalance(categoryList.get(i).getMaxBalance());
+            categoryList.get(i).getExpenditureList().clear();
+        }
     }
 
     public RealmList<BudgetCategory> getCatList(){

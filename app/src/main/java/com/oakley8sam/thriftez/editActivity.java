@@ -49,14 +49,28 @@ public class editActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
+
+               //realm.deleteAll();
+
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
                 Log.d("SIZE", "SIZE: " + budgets.size());
-                if(budgets.size() == 0 || budgets.get(budgets.size()-1).getMonthCreated() != cal.get(Calendar.MONTH)) {
+                //creates a clean budget when the app is first opened
+                if(budgets.size() == 0) {
                     Budget budget = bgRealm.createObject(Budget.class);
                     budget.setTotalCurrFunds(0);
                     budget.setTotalMaxFunds(0);
 
                     budget.setMonthCreated(cal.get(Calendar.MONTH));
+                }
+
+                //creates a new budget on a new month, based on the past month's budget
+                if(budgets.get(budgets.size()-1).getMonthCreated() != cal.get(Calendar.MONTH)){
+                    Log.d("new month budget", "CREATING BUDGET FOR NEW MONTH");
+                    Budget budget = bgRealm.createObject(Budget.class);
+
+                    budget.duplicateBudget(budgets.get(budgets.size()-2));
+                    budget.setMonthCreated(cal.get(Calendar.MONTH));
+                    budget.setYearCreated(cal.get(Calendar.YEAR));
                 }
                 Log.v("number of budgets", "There are: " + budgets.size() + " budgets");
             }
