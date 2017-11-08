@@ -50,7 +50,7 @@ public class editActivity extends AppCompatActivity {
             @Override
             public void execute(Realm bgRealm) {
 
-               //realm.deleteAll();
+               realm.deleteAll();
 
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
                 Log.d("SIZE", "SIZE: " + budgets.size());

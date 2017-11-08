@@ -13,8 +13,10 @@ import com.oakley8sam.thriftez.Model.Budget;
 import com.oakley8sam.thriftez.Model.BudgetCategory;
 import com.oakley8sam.thriftez.Model.Expenditure;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,6 +45,8 @@ public class recordActivity extends AppCompatActivity {
 
     Spinner categorySpinner, daySpinner, monthSpinner;
 
+    private Calendar cal = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +57,7 @@ public class recordActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         yearText = (EditText) findViewById(R.id.yearField);
+        yearText.setText(Integer.toString(cal.get(Calendar.YEAR)));
         amtText = (EditText) findViewById(R.id.amountBox);
         notesText = (EditText) findViewById(R.id.notesBox);
 
@@ -138,7 +143,12 @@ public class recordActivity extends AppCompatActivity {
 
                 Log.d("toString test", expenseToAdd.toString());
 
-                Budget budgetToChange = budget.get(0);
+                Budget budgetToChange = budget.get(budget.size()-1);
+
+                //////////////////////////////////
+                budgetToChange.addExpendituretoMaster(expenseToAdd);
+                //////////////////////////////////
+
 
                 int budgetSize = budgetToChange.getCatList().size();
                 for (int i = 0; i<budgetSize; i++){

@@ -17,8 +17,10 @@ import io.realm.annotations.PrimaryKey;
 
 public class Budget extends RealmObject{
 
-    //instance variables, a list of categories, and floats for max and current funds
+    //instance variables, a list of categories and all expenditures across all categories
+    //and floats for max and current funds
     RealmList<BudgetCategory> categoryList = new RealmList<BudgetCategory>();
+    RealmList<Expenditure> expenditureMasterList = new RealmList<Expenditure>();
     private float totalMaxFunds, totalCurrFunds;
     private int monthCreated, yearCreated;
 
@@ -46,6 +48,21 @@ public class Budget extends RealmObject{
     public void setYearCreated (int newYear) {yearCreated = newYear;}
 
     public int getYearCreated(){return yearCreated;}
+
+    public RealmList<BudgetCategory> getCatList(){
+        return categoryList;
+    }
+
+    // returns the names of the categories as a ArrayList
+    public ArrayList<String> getCatListString() {
+        ArrayList<String> catList = new ArrayList<String>();
+        for (int i = 0; i< categoryList.size(); i++){
+            catList.add(categoryList.get(i).getName());
+        }
+        return catList;
+    }
+
+    public RealmList<Expenditure> getExpenditureMasterList() {return expenditureMasterList;}
 
     //updates max and curr funds based on max and curr funds for each category
     public void updateFunds(){
@@ -93,14 +110,24 @@ public class Budget extends RealmObject{
         return newBal;
     }
 
-    // returns the names of the categories as a ArrayList
-    public ArrayList<String> getCatListString() {
-        ArrayList<String> catList = new ArrayList<String>();
-        for (int i = 0; i< categoryList.size(); i++){
-            catList.add(categoryList.get(i).getName());
+    /////////////////////////////////////////////
+    //adds an expenditure to the budget's master list, sorted by day of the month
+    public void addExpendituretoMaster(Expenditure exp) {
+        Log.d("IN MASTER ADD", "ADDING EXPENDITURE TO MASTER");
+        if (expenditureMasterList.size() == 0) {
+            expenditureMasterList.add(exp);
+        } else {
+            for (int i = 0; i < expenditureMasterList.size(); i++) {
+                Log.d("expenditure master list", "Exp at Index " + i + " = " + expenditureMasterList.get(i).getNote() + "       ");
+                if (expenditureMasterList.get(i).getDay() >= exp.getDay()) {
+                    expenditureMasterList.add(i, exp);
+                    return;
+                }
+            }
+            expenditureMasterList.add(exp);
         }
-        return catList;
     }
+    ///////////////////////////////////////////////
 
     //budget copy constructor
     //duplicates the current budget's categories and their max vals, does not copy expenditures. Used to refresh the budget at the beginning of the month
@@ -118,10 +145,6 @@ public class Budget extends RealmObject{
             categoryList.get(i).setCurrBalance(categoryList.get(i).getMaxBalance());
             categoryList.get(i).getExpenditureList().clear();
         }
-    }
-
-    public RealmList<BudgetCategory> getCatList(){
-        return categoryList;
     }
 
     //BudgetCategory toString, used to print all of a budget's info
