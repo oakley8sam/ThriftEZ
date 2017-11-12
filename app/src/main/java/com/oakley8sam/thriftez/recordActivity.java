@@ -30,14 +30,13 @@ public class recordActivity extends AppCompatActivity {
     //the day spinner
     ArrayAdapter<String> categorySpinnerAdapter;
     ArrayAdapter<Integer> daySpinnerAdapter;
-    ArrayAdapter monthSpinnerAdapter;
+    ArrayAdapter<Integer> monthSpinnerAdapter;
 
     ArrayList<String> catList;
     ArrayList<Integer> daysList= new ArrayList<Integer>();
 
-    Set<String> longMonths = new HashSet<String>(Arrays.asList("January", "March", "May", "July",
-                                                  "August", "October", "December"));
-    Set<String> shortMonths = new HashSet<String>(Arrays.asList("April", "June", "September", "November"));
+    Set<Integer> longMonths = new HashSet<Integer>(Arrays.asList(1, 3, 5, 7, 8, 10, 12));
+    Set<Integer> shortMonths = new HashSet<Integer>(Arrays.asList(4, 6, 9, 11));
 
     private Realm realm;
 
@@ -83,7 +82,8 @@ public class recordActivity extends AppCompatActivity {
 
 
         monthSpinner = (Spinner) findViewById(R.id.monthField);
-        monthSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.months, R.layout.spinner_item);
+        Integer[] monthList = {1,2,3,4,5,6,7,8,9,10,11,12};
+        monthSpinnerAdapter = new ArrayAdapter<Integer>(this, R.layout.spinner_item, monthList);
         monthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(monthSpinnerAdapter);
 
@@ -135,11 +135,12 @@ public class recordActivity extends AppCompatActivity {
                 float amtSpent = Float.parseFloat(amtText.getText().toString());
                 int day = Integer.parseInt(daySpinner.getSelectedItem().toString());
                 int year = Integer.parseInt(yearText.getText().toString());
+                int month = Integer.parseInt(monthSpinner.getSelectedItem().toString());
                 expenseToAdd.setAmtSpent(amtSpent);
                 expenseToAdd.setDay(day);
                 expenseToAdd.setYear(year);
                 expenseToAdd.setNote(notesText.getText().toString());
-                expenseToAdd.setMonth(monthSpinner.getSelectedItem().toString());
+                expenseToAdd.setMonth(month);
 
                 Log.d("toString test", expenseToAdd.toString());
 

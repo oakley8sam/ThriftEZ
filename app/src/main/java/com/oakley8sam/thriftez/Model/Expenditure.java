@@ -13,20 +13,20 @@ import io.realm.RealmObject;
 
 public class Expenditure extends RealmObject {
     //instance variables, including name, max and curr balances, and a realmlist of expenditures
-    String note, month;
-    int day, year;
+    String note;
+    int day, year, month;
     float amtSpent;
 
     public Expenditure(){
         note = "";
-        month = "";
+        month = 1;
         day = 1;
         year = 1;
         amtSpent = 0;
 
     }
 
-    public Expenditure (String no, String mon, int da, int yr, float amt){
+    public Expenditure (String no, int mon, int da, int yr, float amt){
         note = no;
         month = mon;
         day = da;
@@ -42,11 +42,11 @@ public class Expenditure extends RealmObject {
         this.note = note;
     }
 
-    public String getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 
@@ -79,7 +79,7 @@ public class Expenditure extends RealmObject {
     public String toString(){
         Log.d("run toString", "Running toString");
         String expenditureInfo = "";
-        expenditureInfo += String.format(Locale.US,"%f %d/%s/%d %s \n", getAmtSpent(), getDay(), getMonth(), getYear(), getNote());
+        expenditureInfo += String.format(Locale.US,"%f %d/%d/%d %s \n", getAmtSpent(), getDay(), getMonth(), getYear(), getNote());
         return expenditureInfo;
     }
 }

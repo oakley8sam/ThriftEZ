@@ -50,7 +50,7 @@ public class editActivity extends AppCompatActivity {
             @Override
             public void execute(Realm bgRealm) {
 
-               realm.deleteAll();
+                //realm.deleteAll();
 
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
                 Log.d("SIZE", "SIZE: " + budgets.size());
@@ -61,6 +61,7 @@ public class editActivity extends AppCompatActivity {
                     budget.setTotalMaxFunds(0);
 
                     budget.setMonthCreated(cal.get(Calendar.MONTH));
+                    budget.setYearCreated(cal.get(Calendar.YEAR));
                 }
 
                 //creates a new budget on a new month, based on the past month's budget
@@ -108,10 +109,10 @@ public class editActivity extends AppCompatActivity {
         startActivity(new Intent(editActivity.this, expensesActivity.class));
     }
 
-    //goes to calendar activity (currently non-functioning)
-    /*public void goToCalendar(View v){
-        startActivity(new Intent(MainActivity.this, calendarActivity.class));
-    }*/
+    //goes to calendar activity
+    public void goToCalendar(View v){
+        startActivity(new Intent(editActivity.this, calendarActivity.class));
+    }
 
     //goes to deleteCategory activity
     public void goToDeleteCategory(View v){

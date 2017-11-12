@@ -37,7 +37,6 @@
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="14sp" />
-            <!--android:layout_column="1"-->
 
             <TextView
                 android:id="@+id/spentText"
@@ -49,7 +48,6 @@
                 android:textAlignment="center"
                 android:textColor="#ff0000"
                 android:textSize="14sp" />
-            <!--android:layout_column="1"-->
 
             <TextView
                 android:id="@+id/currText"
@@ -61,7 +59,6 @@
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="14sp" />
-            <!--android:layout_column="1"-->
 
             <Space
                 android:layout_width="14dp"
@@ -78,7 +75,6 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="14sp" />
-            <!--android:layout_column="1"-->
 
         </LinearLayout>
 
@@ -132,7 +128,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Calendar" />
+                android:text="Calendar"
+                android:onClick="goToCalendar"/>
         </LinearLayout>
 
         <LinearLayout

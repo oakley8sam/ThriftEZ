@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.oakley8sam.thriftez">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".RealmInit"
         android:allowBackup="true"
@@ -12,50 +14,71 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".recordActivity"
-            android:label="Record an Expense">
+            android:label="Record an Expense"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.oakley8sam.thriftez.recordActivity"/>
+                android:value="com.oakley8sam.thriftez.recordActivity" />
         </activity>
         <activity
             android:name=".editActivity"
-            android:label="View/Edit Budget">
+            android:label="View/Edit Budget"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.editActivity" />
         </activity>
         <activity
             android:name=".deleteCategoryActivity"
-            android:label="Delete a Category">
+            android:label="Delete a Category"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.deleteCategoryActivity" />
         </activity>
         <activity
             android:name=".addCategoryActivity"
-            android:label="Add a new Category">
+            android:label="Add a new Category"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.addCategoryActivity" />
         </activity>
         <activity
             android:name=".editCategoryActivity"
-            android:label="Edit an existing Category">
+            android:label="Edit an existing Category"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.oakley8sam.thriftez.editCategoryActivity" />
         </activity>
         <activity
             android:name=".expensesActivity"
-            android:label="View your expenses">
+            android:label="View your expenses"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.oakley8sam.thriftez.expensesActivity"/>
+                android:value="com.oakley8sam.thriftez.expensesActivity" />
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b39b8872d9eb6d20d728fd800c4c4c909beb1879" />
+
+        <activity
+            android:name=".calendarActivity"
+            android:label="Calendar"
+            android:parentActivityName=".editActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.oakley8sam.thriftez.editActivity" />
         </activity>
     </application>
 
