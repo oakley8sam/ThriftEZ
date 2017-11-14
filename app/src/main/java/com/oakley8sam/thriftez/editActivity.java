@@ -1,5 +1,6 @@
 package com.oakley8sam.thriftez;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -36,7 +37,9 @@ public class editActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         realm = Realm.getDefaultInstance();
 
