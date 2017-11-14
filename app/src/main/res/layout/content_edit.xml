@@ -80,7 +80,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="425dp"
+            android:layout_height="405dp"
             android:orientation="horizontal">
 
             <Space
@@ -104,62 +104,71 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/goToRecord"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Record"
-                android:onClick="goToRecord"/>
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/toToView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="View Expenses"
-                android:onClick="goToExpenses"/>
+                <Button
+                    android:id="@+id/goToView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="goToExpenses"
+                    android:text="View Expenses" />
 
-            <Button
-                android:id="@+id/goToCalendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Calendar"
-                android:onClick="goToCalendar"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/goToRecord"
+                    android:background="@android:color/transparent"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:onClick="goToRecord"
+                    app:srcCompat="@drawable/record_button" />
 
-            <Button
-                android:id="@+id/goToAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add Cat"
-                android:onClick="goToAddCategory"/>
+                <Button
+                    android:id="@+id/goToCalendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="goToCalendar"
+                    android:text="Calendar" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/goToDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete Cat"
-                android:onClick="goToDeleteCategory"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/goToEditCat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edit Cat"
-                android:onClick="goToEditCategory"/>
+                <Button
+                    android:id="@+id/goToAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="goToAddCategory"
+                    android:text="Add Cat" />
+
+                <Button
+                    android:id="@+id/goToDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="goToDeleteCategory"
+                    android:text="Delete Cat" />
+
+                <Button
+                    android:id="@+id/goToEditCat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="goToEditCategory"
+                    android:text="Edit Cat" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
