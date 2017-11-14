@@ -38,7 +38,8 @@ public class editCategoryActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToChange = budget.get(0);
+                ///////////////////////////////////////////////////
+                Budget budgetToChange = budget.get(budget.size()-1);
                 catList = budgetToChange.getCatListString();
 
                 Log.d("length of catlist", "There are " + catList.size() + " cats");
@@ -66,7 +67,8 @@ public class editCategoryActivity extends AppCompatActivity {
                 BudgetCategory catToRemove = bgrealm.createObject(BudgetCategory.class);
                 catToRemove.setName(updateSpinner.getSelectedItem().toString());
 
-                Budget budgetToChange = budget.get(0);
+                ////////////////////////////////////////////
+                Budget budgetToChange = budget.get(budget.size()-1);
                 budgetToChange.editCategory(catToRemove, newBal);
                 catList.remove(updateSpinner.getSelectedItemPosition());
 

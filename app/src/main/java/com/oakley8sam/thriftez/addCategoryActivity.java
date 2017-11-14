@@ -44,7 +44,9 @@ public class addCategoryActivity extends AppCompatActivity {
                 catToAdd.setName(catName.getText().toString());
                 catToAdd.setCurrBalance(amt);
                 catToAdd.setMaxBalance(amt);
-                Budget budgetToChange = budget.get(0);
+
+                //////////////////////////////////////
+                Budget budgetToChange = budget.get(budget.size()-1);
                 budgetToChange.addCategory(catToAdd);
             }
         });

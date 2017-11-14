@@ -42,7 +42,8 @@ public class expensesActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToView = budget.get(0);
+                /////////////////////////////////////////////
+                Budget budgetToView = budget.get(budget.size()-1);
                 catList = budgetToView.getCatListString();
 
                 Log.d("length of catlist", "There are " + catList.size() + " cats");
@@ -66,7 +67,8 @@ public class expensesActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToPrint = budget.get(0);
+                ////////////////////////////////////////////////
+                Budget budgetToPrint = budget.get(budget.size()-1);
 
                 int budgetSize = budgetToPrint.getCatList().size();
                 for (int i = 0; i<budgetSize; i++){

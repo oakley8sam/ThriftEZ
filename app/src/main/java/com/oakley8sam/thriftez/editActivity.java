@@ -1,5 +1,6 @@
 package com.oakley8sam.thriftez;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,6 +18,10 @@ import com.oakley8sam.thriftez.Model.Budget;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -25,11 +30,16 @@ public class editActivity extends AppCompatActivity {
     private Budget budg;
     private Realm realm;
 
+    ////
+    private Calendar cal = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         realm = Realm.getDefaultInstance();
 
@@ -39,15 +49,32 @@ public class editActivity extends AppCompatActivity {
         budgetInfoText.setTextSize(12);
         budgetInfoText.setTypeface(Typeface.MONOSPACE);
 
-
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
+
+                //realm.deleteAll();
+
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
-                if(budgets.size() != 1) {
+                Log.d("SIZE", "SIZE: " + budgets.size());
+                //creates a clean budget when the app is first opened
+                if(budgets.size() == 0) {
                     Budget budget = bgRealm.createObject(Budget.class);
                     budget.setTotalCurrFunds(0);
                     budget.setTotalMaxFunds(0);
+
+                    budget.setMonthCreated(cal.get(Calendar.MONTH));
+                    budget.setYearCreated(cal.get(Calendar.YEAR));
+                }
+
+                //creates a new budget on a new month, based on the past month's budget
+                if(budgets.get(budgets.size()-1).getMonthCreated() != cal.get(Calendar.MONTH)){
+                    Log.d("new month budget", "CREATING BUDGET FOR NEW MONTH");
+                    Budget budget = bgRealm.createObject(Budget.class);
+
+                    budget.duplicateBudget(budgets.get(budgets.size()-2));
+                    budget.setMonthCreated(cal.get(Calendar.MONTH));
+                    budget.setYearCreated(cal.get(Calendar.YEAR));
                 }
                 Log.v("number of budgets", "There are: " + budgets.size() + " budgets");
             }
@@ -59,7 +86,8 @@ public class editActivity extends AppCompatActivity {
             public void execute(Realm bgrealm) {
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-                Budget budgetToPrint = budget.get(0);
+                /////////////////////////////////////////////
+                Budget budgetToPrint = budget.get(budget.size()-1);
                 budg = budgetToPrint;
             }
         });
@@ -84,10 +112,10 @@ public class editActivity extends AppCompatActivity {
         startActivity(new Intent(editActivity.this, expensesActivity.class));
     }
 
-    //goes to calendar activity (currently non-functioning)
-    /*public void goToCalendar(View v){
-        startActivity(new Intent(MainActivity.this, calendarActivity.class));
-    }*/
+    //goes to calendar activity
+    public void goToCalendar(View v){
+        startActivity(new Intent(editActivity.this, calendarActivity.class));
+    }
 
     //goes to deleteCategory activity
     public void goToDeleteCategory(View v){

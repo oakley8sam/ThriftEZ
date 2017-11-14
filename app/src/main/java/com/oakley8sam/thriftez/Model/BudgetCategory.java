@@ -1,5 +1,7 @@
 package com.oakley8sam.thriftez.Model;
 
+import java.util.Calendar;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -13,20 +15,18 @@ public class BudgetCategory extends RealmObject{
     float maxBalance, currBalance;
     RealmList<Expenditure> expenditureList = new RealmList<Expenditure>();
 
+
     //constructors
     public BudgetCategory(){
         catName = null;
         maxBalance = 0;
         currBalance = 0;
-        expenditureList = null;
-
     }
 
     public BudgetCategory(String name, float maxBal) {
         catName = name;
         maxBalance = maxBal;
         currBalance = maxBal;
-        expenditureList = null;
     }
 
     //copy constructor
@@ -70,8 +70,18 @@ public class BudgetCategory extends RealmObject{
         return expenditureList;
     }
 
-    public void addExpenditure(Expenditure exp){
+    public void addExpenditure(Expenditure exp) {
         currBalance -= exp.getAmtSpent();
-        expenditureList.add(exp);
+        if (expenditureList.size() == 0) {
+            expenditureList.add(exp);
+        } else {
+            for (int i = 0; i < expenditureList.size(); i++) {
+                if (expenditureList.get(i).getDay() >= exp.getDay()) {
+                    expenditureList.add(i, exp);
+                    return;
+                }
+            }
+            expenditureList.add(exp);
+        }
     }
 }
