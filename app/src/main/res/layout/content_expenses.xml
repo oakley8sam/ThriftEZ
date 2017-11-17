@@ -133,13 +133,50 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/expensesText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="40"
-            android:scrollbars="vertical" />
+            android:layout_height="440dp"
+            android:orientation="horizontal">
+
+            <TableLayout
+                android:id="@+id/expenseInfoTable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="165dp">
+
+                    <TextView
+                        android:id="@+id/spentHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amt Spent"
+                        android:textColor="#ff0000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/dateHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/noteHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Note"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

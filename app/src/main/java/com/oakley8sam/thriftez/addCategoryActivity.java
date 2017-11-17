@@ -2,7 +2,6 @@ package com.oakley8sam.thriftez;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -34,10 +33,8 @@ public class addCategoryActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgrealm) {
-                Log.d("before results", "Before RealmResults");
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
-
 
                 float amt = Float.valueOf(catAmt.getText().toString());
                 BudgetCategory catToAdd = bgrealm.createObject(BudgetCategory.class);
@@ -45,7 +42,6 @@ public class addCategoryActivity extends AppCompatActivity {
                 catToAdd.setCurrBalance(amt);
                 catToAdd.setMaxBalance(amt);
 
-                //////////////////////////////////////
                 Budget budgetToChange = budget.get(budget.size()-1);
                 budgetToChange.addCategory(catToAdd);
             }

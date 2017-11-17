@@ -1,15 +1,8 @@
 package com.oakley8sam.thriftez.Model;
 
-import android.util.Log;
 
-import java.util.Locale;
-
-import io.realm.RealmList;
 import io.realm.RealmObject;
 
-/**
- * Created by oakle on 10/24/2017.
- */
 
 public class Expenditure extends RealmObject {
     //instance variables, including name, max and curr balances, and a realmlist of expenditures
@@ -17,6 +10,7 @@ public class Expenditure extends RealmObject {
     int day, year, month;
     float amtSpent;
 
+    //expenditure constructors
     public Expenditure(){
         note = "";
         month = 1;
@@ -34,6 +28,7 @@ public class Expenditure extends RealmObject {
         amtSpent = amt;
     }
 
+    //getters and setters
     public String getNote() {
         return note;
     }
@@ -74,12 +69,4 @@ public class Expenditure extends RealmObject {
         this.amtSpent = amtSpent;
     }
 
-    //TODO: CLEAN UP
-    @Override
-    public String toString(){
-        Log.d("run toString", "Running toString");
-        String expenditureInfo = "";
-        expenditureInfo += String.format(Locale.US,"%f %d/%d/%d %s \n", getAmtSpent(), getDay(), getMonth(), getYear(), getNote());
-        return expenditureInfo;
-    }
 }

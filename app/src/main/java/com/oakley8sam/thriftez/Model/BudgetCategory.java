@@ -1,13 +1,8 @@
 package com.oakley8sam.thriftez.Model;
 
-import java.util.Calendar;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
-/**
- * Created by oakle on 10/17/2017.
- */
 
 public class BudgetCategory extends RealmObject{
     //instance variables, including name, max and curr balances, and a realmlist of expenditures
@@ -70,6 +65,7 @@ public class BudgetCategory extends RealmObject{
         return expenditureList;
     }
 
+    //adds the expenditure to the category, updating appropriate values
     public void addExpenditure(Expenditure exp) {
         currBalance -= exp.getAmtSpent();
         if (expenditureList.size() == 0) {

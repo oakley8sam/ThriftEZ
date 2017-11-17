@@ -1,19 +1,10 @@
 package com.oakley8sam.thriftez.Model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import java.lang.Math;
-import java.util.Locale;
 
-import io.realm.annotations.PrimaryKey;
-
-/**
- * Created by oakle on 10/17/2017.
- */
 
 public class Budget extends RealmObject{
 
@@ -62,6 +53,7 @@ public class Budget extends RealmObject{
         return catList;
     }
 
+    //returns the expenditure master list for this budget
     public RealmList<Expenditure> getExpenditureMasterList() {return expenditureMasterList;}
 
     //updates max and curr funds based on max and curr funds for each category
@@ -95,6 +87,7 @@ public class Budget extends RealmObject{
         return false;
     }
 
+    //edits the category with the new max value
     public float editCategory(BudgetCategory cat, float newBal){
         String nameToEdit = cat.getName();
         int listSize = categoryList.size();
@@ -110,15 +103,12 @@ public class Budget extends RealmObject{
         return newBal;
     }
 
-    /////////////////////////////////////////////
     //adds an expenditure to the budget's master list, sorted by day of the month
     public void addExpendituretoMaster(Expenditure exp) {
-        Log.d("IN MASTER ADD", "ADDING EXPENDITURE TO MASTER");
         if (expenditureMasterList.size() == 0) {
             expenditureMasterList.add(exp);
         } else {
             for (int i = 0; i < expenditureMasterList.size(); i++) {
-                Log.d("expenditure master list", "Exp at Index " + i + " = " + expenditureMasterList.get(i).getNote() + "       ");
                 if (expenditureMasterList.get(i).getDay() >= exp.getDay()) {
                     expenditureMasterList.add(i, exp);
                     return;
@@ -127,53 +117,17 @@ public class Budget extends RealmObject{
             expenditureMasterList.add(exp);
         }
     }
-    ///////////////////////////////////////////////
 
     //budget copy constructor
-    //duplicates the current budget's categories and their max vals, does not copy expenditures. Used to refresh the budget at the beginning of the month
+    //duplicates the current budget's categories and their max vals, does not copy expenditures.
+    // Used to refresh the budget at the beginning of the month
     public void duplicateBudget (Budget other){
-        Log.d("duplicate", "DUPLICATING BUDGET");
         this.totalMaxFunds = other.totalMaxFunds;
-        Log.d("copee max", "COPEE'S MAX =" +other.totalMaxFunds);
-        Log.d("dupe max", "DUPLICATE'S MAX = " + totalMaxFunds );
         this.totalCurrFunds = other.totalMaxFunds;
-        Log.d("copee curr", "COPEE's CURR = " + other.totalCurrFunds);
-        Log.d("dupe curr", "DUPLICATE'S CURR = " + totalCurrFunds);
         this.categoryList = other.categoryList;
-        Log.d("catListSize", "CAT LIST SIZE = " + categoryList.size());
         for (int i = 0; i < categoryList.size(); i++){
             categoryList.get(i).setCurrBalance(categoryList.get(i).getMaxBalance());
             categoryList.get(i).getExpenditureList().clear();
         }
-    }
-
-    //BudgetCategory toString, used to print all of a budget's info
-    @Override
-    public String toString() {
-        String budgetInfo = "";
-        for (int i=0; i < categoryList.size(); i++){
-            BudgetCategory currCat = categoryList.get(i);
-            String name = currCat.getName();
-            float currAmt = currCat.getCurrBalance();
-            float maxAmt = currCat.getMaxBalance();
-            float spent = maxAmt-currAmt;
-
-            String spentString = String.format(Locale.US,   "$%4.2f",spent);
-            String currAmtString = String.format(Locale.US,"$%4.2f",currAmt);
-            String maxAmtString= String.format(Locale.US,"$%4.2f",maxAmt);
-            int maxLength = 8;
-
-            budgetInfo += "--------+-------+--------+--------\n";
-            budgetInfo += String.format("%-" +maxLength + "s|%-" + (maxLength - 1) + "s|%-"+ (maxLength - 1) + "s|%-"+ (maxLength - 1) + "s\n",name.substring(0, Math.min(name.length(), maxLength)), spentString.substring(0, Math.min(spentString.length(), maxLength)), currAmtString.substring(0, Math.min(currAmtString.length(), maxLength)), maxAmtString.substring(0, Math.min(maxAmtString.length(), maxLength)));
-        }
-        float totalSpent = totalMaxFunds-totalCurrFunds;
-        String totalSpentString = String.format(Locale.US,"$%4.2f", totalSpent);
-        String totalCurrString = String.format(Locale.US,"$%4.2f", totalCurrFunds);
-        String totalMaxString = String.format(Locale.US,"$%4.2f", totalMaxFunds);
-        int maxLength = 8;
-        budgetInfo += "--------+-------+--------+--------\n";
-        budgetInfo += String.format(Locale.US,"TOTAL:  |%-7s|%-7s|%-7s", totalSpentString.substring(0, Math.min(totalSpentString.length(), maxLength)), totalCurrString.substring(0, Math.min(totalCurrString.length(), maxLength)), totalMaxString.substring(0, Math.min(totalMaxString.length(), maxLength)));
-
-        return budgetInfo;
     }
 }
