@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".editActivity"
-            android:label="View/Edit Budget"
+            android:label="ThriftEZ"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

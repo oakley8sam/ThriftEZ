@@ -133,13 +133,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
+                <ImageButton
                     android:id="@+id/goToView"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:onClick="goToExpenses"
-                    android:text="View Expenses" />
+                    android:src="@drawable/view_button"
+                    android:background="@android:color/transparent"
+                    android:onClick="goToExpenses" />
 
                 <ImageButton
                     android:id="@+id/goToAdd"
@@ -168,13 +169,14 @@
                     android:src="@drawable/edit_button"
                     android:onClick="goToEditCategory" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/goToCalendar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:onClick="goToCalendar"
-                    android:text="Calendar" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/calendar_button"
+                    android:onClick="goToCalendar" />
 
             </LinearLayout>
 
