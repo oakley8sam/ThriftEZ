@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.oakley8sam.thriftez.Model.Budget;
@@ -16,11 +17,13 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class deleteCategoryActivity extends AppCompatActivity {
-    //instance variables, spinner and its adapter, realm instance, and a category array list
+    //instance variables, spinner and its adapter, realm instance, and a category array list,
+    //and a button to be disabled if there is nothing to delete
     ArrayAdapter<String> categorySpinnerAdapter;
     private Spinner delSpinner;
     private Realm realm;
     private ArrayList<String> catList;
+    private Button toDelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class deleteCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delete_category);
 
         delSpinner = (Spinner) findViewById(R.id.toDeleteSpinner);
+        toDelButton = (Button) findViewById(R.id.deleteCategoryButton);
         realm = Realm.getDefaultInstance();
 
         //creates an ArrayList filled with the names of categories in the budgets, in order to
@@ -49,6 +53,10 @@ public class deleteCategoryActivity extends AppCompatActivity {
                                (android.R.layout.simple_spinner_dropdown_item);
         categorySpinnerAdapter.notifyDataSetChanged();
         delSpinner.setAdapter(categorySpinnerAdapter);
+
+        if(categorySpinnerAdapter.getCount() == 0){
+            toDelButton.setEnabled(false);
+        }
 
     }
 

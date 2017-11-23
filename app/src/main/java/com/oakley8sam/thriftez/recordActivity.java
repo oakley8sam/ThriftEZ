@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -42,6 +43,8 @@ public class recordActivity extends AppCompatActivity {
 
     private Calendar cal = Calendar.getInstance();
 
+    private Button recordButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,7 @@ public class recordActivity extends AppCompatActivity {
 
         amtText = (EditText) findViewById(R.id.amountBox);
         notesText = (EditText) findViewById(R.id.notesBox);
+        recordButton = (Button) findViewById(R.id.finishRecordButton);
 
         //loads the budget and category that will be changed
         realm.executeTransaction(new Realm.Transaction() {
@@ -79,6 +83,10 @@ public class recordActivity extends AppCompatActivity {
         categorySpinnerAdapter.setDropDownViewResource
                                (android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categorySpinnerAdapter);
+
+        if(categorySpinnerAdapter.getCount() == 0){
+            recordButton.setEnabled(false);
+        }
 
 
         monthSpinner = (Spinner) findViewById(R.id.monthField);

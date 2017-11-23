@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -17,13 +18,15 @@ import io.realm.RealmResults;
 
 public class editCategoryActivity extends AppCompatActivity {
 
-    //instance variables, a spinner and its adapter, a realm instance, a category array list, and
-    //an edit text
+    //instance variables, a spinner and its adapter, a realm instance, a category array list,
+    //an edit text, and a button to disable the submit button if necessary
     ArrayAdapter<String> categorySpinnerAdapter;
     private Spinner updateSpinner;
     private Realm realm;
     private ArrayList<String> catList;
     private EditText newBalText;
+    private Button updateButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class editCategoryActivity extends AppCompatActivity {
 
         updateSpinner = (Spinner) findViewById(R.id.toUpdateSpinner);
         newBalText = (EditText) findViewById(R.id.newBalanceText);
+        updateButton = (Button) findViewById(R.id.updateCategoryButton);
         realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(new Realm.Transaction() {
@@ -51,6 +55,10 @@ public class editCategoryActivity extends AppCompatActivity {
                                (android.R.layout.simple_spinner_dropdown_item);
         categorySpinnerAdapter.notifyDataSetChanged();
         updateSpinner.setAdapter(categorySpinnerAdapter);
+
+        if(categorySpinnerAdapter.getCount() == 0){
+            updateButton.setEnabled(false);
+        }
     }
 
     public void updateCategory(View v){

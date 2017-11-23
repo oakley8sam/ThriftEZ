@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,6 +29,7 @@ public class expensesActivity extends AppCompatActivity {
     private Spinner viewSpinner;
     private Realm realm;
     private ArrayList<String> catList;
+    private Button viewButton;
     private TableLayout expenditureInfoTable;
 
     @Override
@@ -37,6 +39,7 @@ public class expensesActivity extends AppCompatActivity {
 
         viewSpinner = (Spinner) findViewById(R.id.toDeleteSpinner);
         realm = Realm.getDefaultInstance();
+        viewButton = (Button) findViewById(R.id.viewCategoryButton);
         expenditureInfoTable = (TableLayout) findViewById(R.id.expenseInfoTable);
 
         //creates an ArrayList filled with the names of categories in the budgets, in order to
@@ -58,6 +61,10 @@ public class expensesActivity extends AppCompatActivity {
                                 (android.R.layout.simple_spinner_dropdown_item);
         categorySpinnerAdapter.notifyDataSetChanged();
         viewSpinner.setAdapter(categorySpinnerAdapter);
+
+        if(categorySpinnerAdapter.getCount() == 0){
+            viewButton.setEnabled(false);
+        }
 
     }
 

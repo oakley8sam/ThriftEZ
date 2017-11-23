@@ -41,6 +41,9 @@ public class editActivity extends AppCompatActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
+
+                realm.deleteAll();
+
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
                 //creates a clean budget when the app is first opened
                 if(budgets.size() == 0) {
