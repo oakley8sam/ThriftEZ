@@ -95,6 +95,69 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <Space
+                android:id="@+id/space4"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_constraintLeft_toLeftOf="@+id/textView3"
+                app:layout_constraintRight_toRightOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/newNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="New Category Name"
+                    android:inputType="text"
+                    android:selectAllOnFocus="true"
+                    android:text="New Category Name" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/newCatNameInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Enter a new Category Name, or leave as is to keep it unchanged. "
+                android:textColor="@android:color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toDeleteSpinner"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1" />
+
+            <Space
+                android:id="@+id/space5"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:layout_constraintLeft_toLeftOf="@+id/textView3"
+                app:layout_constraintRight_toRightOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="8dp"
@@ -130,7 +193,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Balance"
-                    android:inputType="numberSigned"
+                    android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
                     android:text="0" />
             </LinearLayout>
 

@@ -10,10 +10,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.oakley8sam.thriftez.Model.Budget;
-import com.oakley8sam.thriftez.Model.BudgetCategory;
+import com.oakley8sam.thriftez.BudgetClasses.Budget;
+import com.oakley8sam.thriftez.BudgetClasses.BudgetCategory;
 
-
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 import io.realm.Realm;
@@ -24,6 +24,9 @@ public class editActivity extends AppCompatActivity {
     private Realm realm;
     private Calendar cal = Calendar.getInstance();
     private TableLayout budgetInfoTable;
+
+    //decimal format used to print monetary values with 2 decimal places
+    DecimalFormat df = new DecimalFormat();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +39,17 @@ public class editActivity extends AppCompatActivity {
 
         budgetInfoTable = (TableLayout) findViewById(R.id.budgetInfoTable);
 
+        df.setMaximumFractionDigits(2);
+        df.setMinimumFractionDigits(2);
+
+
         //creates new budgets on first use of the app, or first use after new month, saves
         //to realm database
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgRealm) {
 
-                realm.deleteAll();
+                //realm.deleteAll();
 
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
                 //creates a clean budget when the app is first opened
@@ -102,18 +109,17 @@ public class editActivity extends AppCompatActivity {
                 float tspent = budgets.get
                         (budgets.size()-1).getTotalMaxFunds() -
                          budgets.get(budgets.size()-1).getTotalCurrFunds();
-                String totalSpentString = Float.toString(tspent);
-                totalSpent.setText((totalSpentString));
+                totalSpent.setText(df.format(tspent));
                 totalSpent.setTextColor(getResources().getColor(R.color.colorRed));
                 totalRow.addView(totalSpent);
 
                 TextView totalCurr = new TextView(budgetInfoTable.getContext());
-                totalCurr.setText(Float.toString(budgetToPrint.getTotalCurrFunds()));
+                totalCurr.setText(df.format(budgetToPrint.getTotalCurrFunds()));
                 totalCurr.setTextColor(getResources().getColor(R.color.colorBlack));
                 totalRow.addView(totalCurr);
 
                 TextView totalMax = new TextView(budgetInfoTable.getContext());
-                totalMax.setText(Float.toString(budgetToPrint.getTotalMaxFunds()));
+                totalMax.setText(df.format(budgetToPrint.getTotalMaxFunds()));
                 totalMax.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                 totalRow.addView(totalMax);
 
@@ -144,18 +150,17 @@ public class editActivity extends AppCompatActivity {
 
                     TextView spentVal = new TextView(budgetInfoTable.getContext());
                     float spent = currCategory.getMaxBalance() - currCategory.getCurrBalance();
-                    String spentString = Float.toString(spent);
-                    spentVal.setText(spentString);
+                    spentVal.setText(df.format(spent));
                     spentVal.setTextColor(getResources().getColor(R.color.colorRed));
                     tr.addView(spentVal);
 
                     TextView currVal = new TextView(budgetInfoTable.getContext());
-                    currVal.setText(Float.toString(currCategory.getCurrBalance()));
+                    currVal.setText(df.format(currCategory.getCurrBalance()));
                     currVal.setTextColor(getResources().getColor(R.color.colorBlack));
                     tr.addView(currVal);
 
                     TextView maxVal = new TextView(budgetInfoTable.getContext());
-                    maxVal.setText(Float.toString(currCategory.getMaxBalance()));
+                    maxVal.setText(df.format(currCategory.getMaxBalance()));
                     maxVal.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                     tr.addView(maxVal);
 

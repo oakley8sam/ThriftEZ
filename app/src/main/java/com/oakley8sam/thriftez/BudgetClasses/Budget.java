@@ -1,4 +1,4 @@
-package com.oakley8sam.thriftez.Model;
+package com.oakley8sam.thriftez.BudgetClasses;
 
 import java.util.ArrayList;
 
@@ -68,6 +68,13 @@ public class Budget extends RealmObject{
 
     //adds a category to the list, increasing max and current funds
     public void addCategory(BudgetCategory cat){
+        String tempName = cat.getName();
+        int duplicate = 0;
+        ArrayList<String> catListString = getCatListString();
+        while(catListString.contains(cat.getName())){
+            duplicate++;
+            cat.setName(tempName + "(" + duplicate + ")");
+        }
         categoryList.add(categoryList.size(),cat);
         updateFunds();
     }
@@ -87,16 +94,29 @@ public class Budget extends RealmObject{
         return false;
     }
 
-    //edits the category with the new max value
-    public float editCategory(BudgetCategory cat, float newBal){
+    //edits the category with the new max value (and new name if it was changed)
+    public float editCategory(BudgetCategory cat, String newName, float newBal){
+        ArrayList<String> catListString = getCatListString();
         String nameToEdit = cat.getName();
         int listSize = categoryList.size();
+        int duplicate = 0;
         for (int i = 0; i < listSize; i++){
             BudgetCategory catToEdit = categoryList.get(i);
             if (catToEdit.getName().equals(nameToEdit)) {
+                //checks to see if a new name was chosen, and changes with duplication handling
+                if(!newName.equals("New Category Name") && !newName.equals(cat.getName())){
+                    catToEdit.setName(newName);
+                    String tempName = catToEdit.getName();
+                    while(catListString.contains(catToEdit.getName())){
+                        duplicate++;
+                        catToEdit.setName(tempName + "(" + duplicate + ")");
+                    }
+                }
                 catToEdit.setMaxBalance(newBal);
-                if(catToEdit.getCurrBalance() > catToEdit.getMaxBalance())
+                if(catToEdit.getCurrBalance() > catToEdit.getMaxBalance()) {
                     catToEdit.setCurrBalance(catToEdit.getMaxBalance());
+                }
+                return newBal;
             }
         }
         updateFunds();

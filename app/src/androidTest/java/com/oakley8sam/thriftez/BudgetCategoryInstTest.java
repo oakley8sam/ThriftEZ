@@ -3,9 +3,8 @@ package com.oakley8sam.thriftez;
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.oakley8sam.thriftez.Model.Budget;
-import com.oakley8sam.thriftez.Model.BudgetCategory;
-import com.oakley8sam.thriftez.Model.Expenditure;
+import com.oakley8sam.thriftez.BudgetClasses.BudgetCategory;
+import com.oakley8sam.thriftez.BudgetClasses.Expenditure;
 
 import org.junit.Before;
 import org.junit.Test;

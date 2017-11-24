@@ -2,14 +2,16 @@ package com.oakley8sam.thriftez;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.oakley8sam.thriftez.Model.Budget;
-import com.oakley8sam.thriftez.Model.BudgetCategory;
+import com.oakley8sam.thriftez.BudgetClasses.Budget;
+import com.oakley8sam.thriftez.BudgetClasses.BudgetCategory;
+import com.oakley8sam.thriftez.Helpers.DecimalLimitFilter;
 
 import java.util.ArrayList;
 
@@ -24,9 +26,8 @@ public class editCategoryActivity extends AppCompatActivity {
     private Spinner updateSpinner;
     private Realm realm;
     private ArrayList<String> catList;
-    private EditText newBalText;
+    private EditText newBalText, newNameText;
     private Button updateButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,13 @@ public class editCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_category);
 
         updateSpinner = (Spinner) findViewById(R.id.toUpdateSpinner);
+
+        newNameText = (EditText) findViewById(R.id.newNameText);
+
         newBalText = (EditText) findViewById(R.id.newBalanceText);
+        //limits the newBal to only two places after the decimal
+        newBalText.setFilters(new InputFilter[] {new DecimalLimitFilter(3)});
+
         updateButton = (Button) findViewById(R.id.updateCategoryButton);
         realm = Realm.getDefaultInstance();
 
@@ -67,16 +74,16 @@ public class editCategoryActivity extends AppCompatActivity {
             @Override
             public void execute(Realm bgrealm) {
                 float newBal = Float.parseFloat(newBalText.getText().toString());
+                String newName = newNameText.getText().toString();
 
                 RealmResults<Budget> budget = realm.where(Budget.class).findAll();
                 budget.load();
 
-                BudgetCategory catToRemove = bgrealm.createObject(BudgetCategory.class);
-                catToRemove.setName(updateSpinner.getSelectedItem().toString());
+                BudgetCategory catToEdit = bgrealm.createObject(BudgetCategory.class);
+                catToEdit.setName(updateSpinner.getSelectedItem().toString());
 
                 Budget budgetToChange = budget.get(budget.size()-1);
-                budgetToChange.editCategory(catToRemove, newBal);
-                catList.remove(updateSpinner.getSelectedItemPosition());
+                budgetToChange.editCategory(catToEdit, newName, newBal);
             }
         });
         finish();

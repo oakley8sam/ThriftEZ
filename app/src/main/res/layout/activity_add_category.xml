@@ -33,6 +33,7 @@
                 android:ems="10"
                 android:hint="My category"
                 android:inputType="textPersonName"
+                android:selectAllOnFocus="true"
                 android:text="New Category"
                 android:textColor="#000000" />
 
@@ -91,6 +92,7 @@
                     android:ems="10"
                     android:hint="Start balance"
                     android:inputType="numberDecimal"
+                    android:selectAllOnFocus="true"
                     android:text="0"
                     android:textColor="#000000" />
             </LinearLayout>

@@ -12,10 +12,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.oakley8sam.thriftez.Model.Budget;
-import com.oakley8sam.thriftez.Model.BudgetCategory;
-import com.oakley8sam.thriftez.Model.Expenditure;
+import com.oakley8sam.thriftez.BudgetClasses.Budget;
+import com.oakley8sam.thriftez.BudgetClasses.BudgetCategory;
+import com.oakley8sam.thriftez.BudgetClasses.Expenditure;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import io.realm.Realm;
@@ -32,6 +33,9 @@ public class expensesActivity extends AppCompatActivity {
     private Button viewButton;
     private TableLayout expenditureInfoTable;
 
+    //decimal format used to print monetary values with 2 decimal places
+    DecimalFormat df = new DecimalFormat();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,9 @@ public class expensesActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         viewButton = (Button) findViewById(R.id.viewCategoryButton);
         expenditureInfoTable = (TableLayout) findViewById(R.id.expenseInfoTable);
+
+        df.setMaximumFractionDigits(2);
+        df.setMinimumFractionDigits(2);
 
         //creates an ArrayList filled with the names of categories in the budgets, in order to
         //populate the spinner
@@ -99,7 +106,7 @@ public class expensesActivity extends AppCompatActivity {
                     Expenditure currExp = expenses.get(i);
 
                     TextView amtSpent = new TextView(expenditureInfoTable.getContext());
-                    amtSpent.setText(Float.toString(currExp.getAmtSpent()));
+                    amtSpent.setText(df.format(currExp.getAmtSpent()));
                     amtSpent.setTextColor(getResources().getColor(R.color.colorRed));
                     tr.addView(amtSpent);
 

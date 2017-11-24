@@ -2,15 +2,17 @@ package com.oakley8sam.thriftez;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.oakley8sam.thriftez.Model.Budget;
-import com.oakley8sam.thriftez.Model.BudgetCategory;
-import com.oakley8sam.thriftez.Model.Expenditure;
+import com.oakley8sam.thriftez.BudgetClasses.Budget;
+import com.oakley8sam.thriftez.BudgetClasses.BudgetCategory;
+import com.oakley8sam.thriftez.BudgetClasses.Expenditure;
+import com.oakley8sam.thriftez.Helpers.DecimalLimitFilter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +63,9 @@ public class recordActivity extends AppCompatActivity {
         yearText.setEnabled(false);
 
         amtText = (EditText) findViewById(R.id.amountBox);
+        //limits the amt to only two places after the decimal
+        amtText.setFilters(new InputFilter[] {new DecimalLimitFilter(3)});
+
         notesText = (EditText) findViewById(R.id.notesBox);
         recordButton = (Button) findViewById(R.id.finishRecordButton);
 
@@ -141,6 +146,7 @@ public class recordActivity extends AppCompatActivity {
                 Expenditure expenseToAdd = bgrealm.createObject(Expenditure.class);
 
                 float amtSpent = Float.parseFloat(amtText.getText().toString());
+
                 int day = Integer.parseInt(daySpinner.getSelectedItem().toString());
                 int year = Integer.parseInt(yearText.getText().toString());
                 int month = Integer.parseInt(monthSpinner.getSelectedItem().toString());

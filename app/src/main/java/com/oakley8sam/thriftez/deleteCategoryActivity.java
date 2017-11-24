@@ -7,13 +7,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.oakley8sam.thriftez.Model.Budget;
-import com.oakley8sam.thriftez.Model.BudgetCategory;
+import com.oakley8sam.thriftez.BudgetClasses.Budget;
+import com.oakley8sam.thriftez.BudgetClasses.BudgetCategory;
 
 import java.util.ArrayList;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class deleteCategoryActivity extends AppCompatActivity {
@@ -74,7 +73,6 @@ public class deleteCategoryActivity extends AppCompatActivity {
 
                 Budget budgetToChange = budget.get(budget.size()-1);
                 budgetToChange.removeCategory(catToRemove);
-                catList.remove(delSpinner.getSelectedItemPosition());
             }
         });
         finish();

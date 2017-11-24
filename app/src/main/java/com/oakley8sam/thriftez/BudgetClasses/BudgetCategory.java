@@ -1,4 +1,4 @@
-package com.oakley8sam.thriftez.Model;
+package com.oakley8sam.thriftez.BudgetClasses;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
