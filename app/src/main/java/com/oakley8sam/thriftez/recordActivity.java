@@ -170,6 +170,39 @@ public class recordActivity extends AppCompatActivity {
         });
         finish();
     }
+
+    public void recordRepayment(View v){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm bgrealm) {
+                RealmResults<Budget> budget = realm.where(Budget.class).findAll();
+                budget.load();
+
+                Expenditure repaymentToAdd = bgrealm.createObject(Expenditure.class);
+
+                float amtPaid = Float.parseFloat(amtText.getText().toString());
+
+                int day = Integer.parseInt(daySpinner.getSelectedItem().toString());
+                int year = Integer.parseInt(yearText.getText().toString());
+                int month = Integer.parseInt(monthSpinner.getSelectedItem().toString());
+
+                repaymentToAdd.setAmtSpent(amtPaid);
+                repaymentToAdd.setDay(day);
+                repaymentToAdd.setYear(year);
+                repaymentToAdd.setNote(notesText.getText().toString());
+                repaymentToAdd.setMonth(month);
+
+                Budget budgetToChange = budget.get(budget.size()-1);
+
+                BudgetCategory catToChange = budgetToChange.getCatList()
+                        .get(categorySpinner.getSelectedItemPosition());
+                catToChange.addRepayment(repaymentToAdd);
+                budgetToChange.updateFunds();
+
+            }
+        });
+        finish();
+    }
 }
 
 

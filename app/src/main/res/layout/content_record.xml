@@ -166,12 +166,27 @@
             android:layout_width="match_parent"
             android:layout_height="35dp" />
 
-        <Button
-            android:id="@+id/finishRecordButton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="recordExpense"
-            android:text="Submit" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/finishRecordButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="recordExpense"
+                android:text="Submit Expense" />
+
+            <Button
+                android:id="@+id/finishRepaymentButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Submit Repayment"
+                android:onClick="recordRepayment"/>
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

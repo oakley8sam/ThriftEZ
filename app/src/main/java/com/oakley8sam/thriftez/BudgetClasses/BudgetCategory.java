@@ -9,6 +9,7 @@ public class BudgetCategory extends RealmObject{
     String catName;
     float maxBalance, currBalance;
     RealmList<Expenditure> expenditureList = new RealmList<Expenditure>();
+    RealmList<Expenditure> repaymentList = new RealmList<Expenditure>();
 
 
     //constructors
@@ -30,6 +31,7 @@ public class BudgetCategory extends RealmObject{
         maxBalance = other.getMaxBalance();
         currBalance = other.getCurrBalance();
         expenditureList = other.getExpenditureList();
+        repaymentList = other.getRepaymentList();
     }
 
     //getters and setters for name, max, and curr balance
@@ -65,6 +67,12 @@ public class BudgetCategory extends RealmObject{
         return expenditureList;
     }
 
+    public void setRepaymentList(RealmList<Expenditure> otherList){
+        repaymentList = otherList;
+    }
+
+    public RealmList<Expenditure> getRepaymentList() { return repaymentList; }
+
     //adds the expenditure to the category, updating appropriate values
     public void addExpenditure(Expenditure exp) {
         currBalance -= exp.getAmtSpent();
@@ -78,6 +86,21 @@ public class BudgetCategory extends RealmObject{
                 }
             }
             expenditureList.add(exp);
+        }
+    }
+
+    public void addRepayment(Expenditure exp) {
+        currBalance +=exp.getAmtSpent();
+        if(repaymentList.size() == 0){
+            repaymentList.add(exp);
+        } else {
+            for (int i = 0; i < repaymentList.size(); i++){
+                if (repaymentList.get(i).getDay() >= exp.getDay()){
+                    repaymentList.add(i,exp);
+                    return;
+                }
+            }
+            repaymentList.add(exp);
         }
     }
 }

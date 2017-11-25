@@ -148,6 +148,7 @@ public class Budget extends RealmObject{
         for (int i = 0; i < categoryList.size(); i++){
             categoryList.get(i).setCurrBalance(categoryList.get(i).getMaxBalance());
             categoryList.get(i).getExpenditureList().clear();
+            categoryList.get(i).getRepaymentList().clear();
         }
     }
 }

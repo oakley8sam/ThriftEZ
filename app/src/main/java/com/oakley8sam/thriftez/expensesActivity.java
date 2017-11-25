@@ -75,6 +75,7 @@ public class expensesActivity extends AppCompatActivity {
 
     }
 
+    //prints the catgory's expenses and repayments to a table
     public void viewCategoryExpenses(View v){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -124,6 +125,39 @@ public class expensesActivity extends AppCompatActivity {
                     expenditureInfoTable.addView(tr, new TableLayout.LayoutParams
                                                         (ViewGroup.LayoutParams.MATCH_PARENT,
                                                         ViewGroup.LayoutParams.WRAP_CONTENT));
+                }
+
+                RealmList<Expenditure> repayments = catToPrint.getRepaymentList();
+                int numRepayments = repayments.size();
+
+                //repopulates the table with repayment information row by row
+                for(int i = 0; i < numRepayments; i++){
+                    TableRow tr = new TableRow(expenditureInfoTable.getContext());
+                    tr.setLayoutParams(new TableRow.LayoutParams
+                                      (ActionBar.LayoutParams.MATCH_PARENT,
+                                       ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                    Expenditure currRepayment = repayments.get(i);
+
+                    TextView amtPaid = new TextView(expenditureInfoTable.getContext());
+                    amtPaid.setText(df.format(currRepayment.getAmtSpent()));
+                    amtPaid.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+                    tr.addView(amtPaid);
+
+                    TextView repayDate = new TextView(expenditureInfoTable.getContext());
+                    repayDate.setText(currRepayment.getMonth() + "/" +
+                            currRepayment.getDay() + "/" + currRepayment.getYear());
+                    repayDate.setTextColor(getResources().getColor(R.color.colorBlack));
+                    tr.addView(repayDate);
+
+                    TextView repayNote = new TextView(expenditureInfoTable.getContext());
+                    repayNote.setText(currRepayment.getNote());
+                    repayNote.setTextColor(getResources().getColor(R.color.colorBlack));
+                    tr.addView(repayNote);
+
+                    expenditureInfoTable.addView(tr, new TableLayout.LayoutParams
+                            (ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT));
                 }
             }
         });
