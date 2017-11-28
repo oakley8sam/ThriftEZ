@@ -102,13 +102,13 @@
                 tools:layout_constraintRight_creator="1"
                 tools:layout_constraintTop_creator="1" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/deleteCategoryButton"
                 android:layout_width="170dp"
                 android:layout_height="63dp"
                 android:elevation="0dp"
-                android:text="DELETE"
-                android:textAlignment="center"
+                android:background="@color/caldroid_transparent"
+                android:src="@drawable/trash_button"
                 android:onClick="deleteCategory"
                 app:layout_constraintLeft_toLeftOf="@+id/space"
                 app:layout_constraintRight_toRightOf="@+id/space"

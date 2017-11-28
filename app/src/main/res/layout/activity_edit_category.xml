@@ -245,13 +245,13 @@
                 tools:layout_constraintRight_creator="1"
                 tools:layout_constraintTop_creator="1" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/updateCategoryButton"
                 android:layout_width="170dp"
                 android:layout_height="63dp"
                 android:elevation="0dp"
-                android:text="UPDATE CATEGORY"
-                android:textAlignment="center"
+                android:background="@color/caldroid_transparent"
+                android:src="@drawable/edit_button"
                 android:onClick="updateCategory"
                 app:layout_constraintLeft_toLeftOf="@+id/space"
                 app:layout_constraintRight_toRightOf="@+id/space"

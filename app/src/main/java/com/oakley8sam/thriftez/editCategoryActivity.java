@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.oakley8sam.thriftez.BudgetClasses.Budget;
@@ -27,7 +28,7 @@ public class editCategoryActivity extends AppCompatActivity {
     private Realm realm;
     private ArrayList<String> catList;
     private EditText newBalText, newNameText;
-    private Button updateButton;
+    private ImageButton updateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class editCategoryActivity extends AppCompatActivity {
         //limits the newBal to only two places after the decimal
         newBalText.setFilters(new InputFilter[] {new DecimalLimitFilter(3)});
 
-        updateButton = (Button) findViewById(R.id.updateCategoryButton);
+        updateButton = (ImageButton) findViewById(R.id.updateCategoryButton);
         realm = Realm.getDefaultInstance();
 
         realm.executeTransaction(new Realm.Transaction() {

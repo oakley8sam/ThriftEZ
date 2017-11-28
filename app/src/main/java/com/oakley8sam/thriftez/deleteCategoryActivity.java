@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.oakley8sam.thriftez.BudgetClasses.Budget;
@@ -22,7 +23,7 @@ public class deleteCategoryActivity extends AppCompatActivity {
     private Spinner delSpinner;
     private Realm realm;
     private ArrayList<String> catList;
-    private Button toDelButton;
+    private ImageButton toDelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class deleteCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delete_category);
 
         delSpinner = (Spinner) findViewById(R.id.toDeleteSpinner);
-        toDelButton = (Button) findViewById(R.id.deleteCategoryButton);
+        toDelButton = (ImageButton) findViewById(R.id.deleteCategoryButton);
         realm = Realm.getDefaultInstance();
 
         //creates an ArrayList filled with the names of categories in the budgets, in order to

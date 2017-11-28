@@ -129,12 +129,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Button
+        <ImageButton
             android:id="@+id/addCatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add Category"
+            android:src="@drawable/add_button"
+            android:background="@color/caldroid_transparent"
             android:onClick="addNewCategory"/>
         <!--android:layout_alignParentBottom="true"
          android:layout_centerHorizontal="true"-->
