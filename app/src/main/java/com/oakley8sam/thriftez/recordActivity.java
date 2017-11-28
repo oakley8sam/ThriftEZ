@@ -45,7 +45,7 @@ public class recordActivity extends AppCompatActivity {
 
     private Calendar cal = Calendar.getInstance();
 
-    private Button recordButton;
+    private Button recordButton, repayButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,7 @@ public class recordActivity extends AppCompatActivity {
 
         notesText = (EditText) findViewById(R.id.notesBox);
         recordButton = (Button) findViewById(R.id.finishRecordButton);
+        repayButton = (Button) findViewById(R.id.finishRepaymentButton);
 
         //loads the budget and category that will be changed
         realm.executeTransaction(new Realm.Transaction() {
@@ -91,6 +92,7 @@ public class recordActivity extends AppCompatActivity {
 
         if(categorySpinnerAdapter.getCount() == 0){
             recordButton.setEnabled(false);
+            repayButton.setEnabled(false);
         }
 
 

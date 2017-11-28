@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /* DecimalLimitFilter
-    An override of the basic Charsequence filter, allowing us to limit deimcal textViews to
+    An override of the basic Charsequence filter, allowing us to limit decimal textViews to
     two numbers after the decimal, as is normal with values representing money.
  */
 

@@ -49,7 +49,7 @@ public class editActivity extends AppCompatActivity {
             @Override
             public void execute(Realm bgRealm) {
 
-                //realm.deleteAll();
+                realm.deleteAll();
 
                 RealmResults<Budget> budgets = realm.where(Budget.class).findAll();
                 //creates a clean budget when the app is first opened
@@ -106,12 +106,16 @@ public class editActivity extends AppCompatActivity {
                 totalRow.addView(total);
 
                 TextView totalSpent = new TextView(budgetInfoTable.getContext());
-                float tspent = budgets.get
-                        (budgets.size()-1).getTotalMaxFunds() -
-                         budgets.get(budgets.size()-1).getTotalCurrFunds();
-                totalSpent.setText(df.format(tspent));
+                float tSpent = budgets.get(budgets.size()-1).getTotalSpent();
+                totalSpent.setText(df.format(tSpent));
                 totalSpent.setTextColor(getResources().getColor(R.color.colorRed));
                 totalRow.addView(totalSpent);
+
+                TextView totalReimbursed = new TextView(budgetInfoTable.getContext());
+                float tReimbursed = budgets.get(budgets.size()-1).getTotalReimbursed();
+                totalReimbursed.setText(df.format(tReimbursed));
+                totalReimbursed.setTextColor(getResources().getColor(R.color.colorBlue));
+                totalRow.addView(totalReimbursed);
 
                 TextView totalCurr = new TextView(budgetInfoTable.getContext());
                 totalCurr.setText(df.format(budgetToPrint.getTotalCurrFunds()));
@@ -149,10 +153,16 @@ public class editActivity extends AppCompatActivity {
                     tr.addView(catName);
 
                     TextView spentVal = new TextView(budgetInfoTable.getContext());
-                    float spent = currCategory.getMaxBalance() - currCategory.getCurrBalance();
+                    float spent = currCategory.getSpent();
                     spentVal.setText(df.format(spent));
                     spentVal.setTextColor(getResources().getColor(R.color.colorRed));
                     tr.addView(spentVal);
+
+                    TextView reimbursedVal = new TextView(budgetInfoTable.getContext());
+                    float reimbursed = currCategory.getReimbursed();
+                    reimbursedVal.setText(df.format(reimbursed));
+                    reimbursedVal.setTextColor(getResources().getColor(R.color.colorBlue));
+                    tr.addView(reimbursedVal);
 
                     TextView currVal = new TextView(budgetInfoTable.getContext());
                     currVal.setText(df.format(currCategory.getCurrBalance()));

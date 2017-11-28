@@ -7,7 +7,7 @@ import io.realm.RealmObject;
 public class BudgetCategory extends RealmObject{
     //instance variables, including name, max and curr balances, and a realmlist of expenditures
     String catName;
-    float maxBalance, currBalance;
+    float maxBalance, currBalance, spent, reimbursed;
     RealmList<Expenditure> expenditureList = new RealmList<Expenditure>();
     RealmList<Expenditure> repaymentList = new RealmList<Expenditure>();
 
@@ -17,6 +17,8 @@ public class BudgetCategory extends RealmObject{
         catName = null;
         maxBalance = 0;
         currBalance = 0;
+        spent = 0;
+        reimbursed = 0;
     }
 
     public BudgetCategory(String name, float maxBal) {
@@ -30,6 +32,8 @@ public class BudgetCategory extends RealmObject{
         catName = other.getName();
         maxBalance = other.getMaxBalance();
         currBalance = other.getCurrBalance();
+        spent = other.getSpent();
+        reimbursed = other.getReimbursed();
         expenditureList = other.getExpenditureList();
         repaymentList = other.getRepaymentList();
     }
@@ -59,6 +63,14 @@ public class BudgetCategory extends RealmObject{
         this.currBalance = currBalance;
     }
 
+    public float getSpent() {return spent;}
+
+    public void setSpent(float newSpent) {spent = newSpent;}
+
+    public float getReimbursed() {return reimbursed;}
+
+    public void setReimbursed(float newReimbursed) {reimbursed = newReimbursed;}
+
     public void setExpenditureList(RealmList<Expenditure> otherList){
         expenditureList = otherList;
     }
@@ -76,6 +88,7 @@ public class BudgetCategory extends RealmObject{
     //adds the expenditure to the category, updating appropriate values
     public void addExpenditure(Expenditure exp) {
         currBalance -= exp.getAmtSpent();
+        spent += exp.getAmtSpent();
         if (expenditureList.size() == 0) {
             expenditureList.add(exp);
         } else {
@@ -89,18 +102,19 @@ public class BudgetCategory extends RealmObject{
         }
     }
 
-    public void addRepayment(Expenditure exp) {
-        currBalance +=exp.getAmtSpent();
+    public void addRepayment(Expenditure reimbursal) {
+        currBalance +=reimbursal.getAmtSpent();
+        reimbursed += reimbursal.getAmtSpent();
         if(repaymentList.size() == 0){
-            repaymentList.add(exp);
+            repaymentList.add(reimbursal);
         } else {
             for (int i = 0; i < repaymentList.size(); i++){
-                if (repaymentList.get(i).getDay() >= exp.getDay()){
-                    repaymentList.add(i,exp);
+                if (repaymentList.get(i).getDay() >= reimbursal.getDay()){
+                    repaymentList.add(i,reimbursal);
                     return;
                 }
             }
-            repaymentList.add(exp);
+            repaymentList.add(reimbursal);
         }
     }
 }

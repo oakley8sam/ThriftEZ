@@ -12,7 +12,7 @@ public class Budget extends RealmObject{
     //and floats for max and current funds
     RealmList<BudgetCategory> categoryList = new RealmList<BudgetCategory>();
     RealmList<Expenditure> expenditureMasterList = new RealmList<Expenditure>();
-    private float totalMaxFunds, totalCurrFunds;
+    private float totalMaxFunds, totalCurrFunds, totalSpent, totalReimbursed;
     private int monthCreated, yearCreated;
 
     //getters and setters for fund floats
@@ -31,6 +31,14 @@ public class Budget extends RealmObject{
     public void setTotalCurrFunds(float totalCurrFunds) {
         this.totalCurrFunds = totalCurrFunds;
     }
+
+    public float getTotalSpent() {return totalSpent;}
+
+    public void setTotalSpent(float newTotalSpent){totalSpent = newTotalSpent;}
+
+    public float getTotalReimbursed(){return totalReimbursed;}
+
+    public void setTotalReimbursed(float newTotalReimbursed) {totalReimbursed = newTotalReimbursed;}
 
     public void setMonthCreated(int newMonth){ monthCreated = newMonth; }
 
@@ -60,9 +68,13 @@ public class Budget extends RealmObject{
     public void updateFunds(){
         totalMaxFunds=0;
         totalCurrFunds=0;
+        totalSpent=0;
+        totalReimbursed=0;
         for (int i=0; i<categoryList.size();i++){
             totalMaxFunds+=categoryList.get(i).getMaxBalance();
             totalCurrFunds+=categoryList.get(i).getCurrBalance();
+            totalSpent+=categoryList.get(i).getSpent();
+            totalReimbursed+=categoryList.get(i).getReimbursed();
         }
     }
 
