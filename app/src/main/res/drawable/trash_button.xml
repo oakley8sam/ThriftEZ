@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Central icon image: Trash by Wawan Hermawan from the Noun Project -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false"
+        android:drawable="@drawable/trash_disabled"/> <!-- disabled -->
     <item android:state_pressed="true"
         android:drawable="@drawable/trash_pressed" /> <!-- pressed -->
     <item android:state_focused="true"
