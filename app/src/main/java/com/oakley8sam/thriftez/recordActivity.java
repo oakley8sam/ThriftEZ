@@ -94,7 +94,7 @@ public class recordActivity extends AppCompatActivity {
 
         //populates the daySpinner with the appropriate days depending on month
         daySpinnerAdapter.clear();
-        int maxDay = cal.getMaximum(Calendar.DATE);
+        int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         for (int i = 1; i <= maxDay; i++)
             daySpinnerAdapter.add(i);
