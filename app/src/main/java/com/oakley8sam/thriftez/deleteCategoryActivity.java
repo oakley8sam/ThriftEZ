@@ -54,6 +54,8 @@ public class deleteCategoryActivity extends AppCompatActivity {
         categorySpinnerAdapter.notifyDataSetChanged();
         delSpinner.setAdapter(categorySpinnerAdapter);
 
+        //disables the delete button if the spinner is empty(meaning there are no categories to
+        //delete)
         if(categorySpinnerAdapter.getCount() == 0){
             toDelButton.setEnabled(false);
         }

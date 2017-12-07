@@ -29,19 +29,15 @@ public class recordActivity extends AppCompatActivity {
     //the day spinner
     ArrayAdapter<String> categorySpinnerAdapter;
     ArrayAdapter<Integer> daySpinnerAdapter;
-    ArrayAdapter<Integer> monthSpinnerAdapter;
 
     ArrayList<String> catList;
     ArrayList<Integer> daysList= new ArrayList<Integer>();
 
-    Set<Integer> longMonths = new HashSet<Integer>(Arrays.asList(1, 3, 5, 7, 8, 10, 12));
-    Set<Integer> shortMonths = new HashSet<Integer>(Arrays.asList(4, 6, 9, 11));
-
     private Realm realm;
 
-    private EditText amtText, notesText, yearText;
+    private EditText amtText, notesText;
 
-    Spinner categorySpinner, daySpinner, monthSpinner;
+    Spinner categorySpinner, daySpinner;
 
     private Calendar cal = Calendar.getInstance();
 
@@ -55,12 +51,6 @@ public class recordActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        yearText = (EditText) findViewById(R.id.yearField);
-        yearText.setText(Integer.toString(cal.get(Calendar.YEAR)));
-
-        //lock year to current year
-        yearText.setEnabled(false);
 
         amtText = (EditText) findViewById(R.id.amountBox);
         //limits the amt to only two places after the decimal
@@ -90,23 +80,11 @@ public class recordActivity extends AppCompatActivity {
                                (android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categorySpinnerAdapter);
 
+        //disables buttons if the spinner is empty (meaning no categories to record to)
         if(categorySpinnerAdapter.getCount() == 0){
             recordButton.setEnabled(false);
             repayButton.setEnabled(false);
         }
-
-
-        monthSpinner = (Spinner) findViewById(R.id.monthField);
-        Integer[] monthList = {1,2,3,4,5,6,7,8,9,10,11,12};
-        monthSpinnerAdapter = new ArrayAdapter<Integer>
-                              (this, R.layout.spinner_item, monthList);
-        monthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        monthSpinner.setAdapter(monthSpinnerAdapter);
-        monthSpinner.setSelection(cal.get(Calendar.MONTH));
-
-        //locks month to current month
-        monthSpinner.setEnabled(false);
-
 
         daySpinner = (Spinner) findViewById(R.id.dayField);
         daySpinnerAdapter = new ArrayAdapter<Integer>
@@ -116,27 +94,15 @@ public class recordActivity extends AppCompatActivity {
 
         //populates the daySpinner with the appropriate days depending on month
         daySpinnerAdapter.clear();
-        int max = 28;
-        String yearString = yearText.getText().toString();
-        int yearInt = Integer.parseInt(yearString);
-        if (longMonths.contains(monthSpinner.getSelectedItem()))
-            max = 31;
-        else if(shortMonths.contains(monthSpinner.getSelectedItem()))
-            max = 30;
-        else if(yearInt % 4 == 0) {
-            if(yearInt % 100 == 0) {
-                if (yearInt % 400 == 0)
-                    max = 29;
-            } else
-                max = 29;
-        }
-        for (int i = 1; i <= max; i++)
+        int maxDay = cal.getMaximum(Calendar.DATE);
+
+        for (int i = 1; i <= maxDay; i++)
             daySpinnerAdapter.add(i);
 
-        daySpinner.setSelection(cal.get(Calendar.DATE)-1);
+        daySpinner.setSelection(cal.get(Calendar.DATE) - 1);
     }
 
-    //records an expense in the correct categories expenditure list, updating the budget info
+    //records an expense in the correct category's expenditure list, updating the budget info
     //in the process
     public void recordExpense(View v){
         realm.executeTransaction(new Realm.Transaction() {
@@ -150,8 +116,8 @@ public class recordActivity extends AppCompatActivity {
                 float amtSpent = Float.parseFloat(amtText.getText().toString());
 
                 int day = Integer.parseInt(daySpinner.getSelectedItem().toString());
-                int year = Integer.parseInt(yearText.getText().toString());
-                int month = Integer.parseInt(monthSpinner.getSelectedItem().toString());
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH) + 1;
 
                 expenseToAdd.setAmtSpent(amtSpent);
                 expenseToAdd.setDay(day);
@@ -173,6 +139,8 @@ public class recordActivity extends AppCompatActivity {
         finish();
     }
 
+    //records a repayment in the correct category's repayment list, updating the budget info
+    //in the process
     public void recordRepayment(View v){
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -185,8 +153,8 @@ public class recordActivity extends AppCompatActivity {
                 float amtPaid = Float.parseFloat(amtText.getText().toString());
 
                 int day = Integer.parseInt(daySpinner.getSelectedItem().toString());
-                int year = Integer.parseInt(yearText.getText().toString());
-                int month = Integer.parseInt(monthSpinner.getSelectedItem().toString());
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH) + 1;
 
                 repaymentToAdd.setAmtSpent(amtPaid);
                 repaymentToAdd.setDay(day);

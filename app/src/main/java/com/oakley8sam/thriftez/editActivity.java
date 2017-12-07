@@ -21,6 +21,7 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class editActivity extends AppCompatActivity {
+    //instance variables: realm instance, calendar, and table of budget info
     private Realm realm;
     private Calendar cal = Calendar.getInstance();
     private TableLayout budgetInfoTable;

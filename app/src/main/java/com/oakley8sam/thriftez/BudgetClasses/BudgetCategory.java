@@ -102,6 +102,7 @@ public class BudgetCategory extends RealmObject{
         }
     }
 
+    //adds a repayment to the category, updating appropriate values
     public void addRepayment(Expenditure reimbursal) {
         currBalance +=reimbursal.getAmtSpent();
         reimbursed += reimbursal.getAmtSpent();

@@ -1,6 +1,7 @@
 package com.oakley8sam.thriftez;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+
+import static android.support.design.widget.Snackbar.LENGTH_SHORT;
 
 public class editCategoryActivity extends AppCompatActivity {
 
@@ -64,12 +67,19 @@ public class editCategoryActivity extends AppCompatActivity {
         categorySpinnerAdapter.notifyDataSetChanged();
         updateSpinner.setAdapter(categorySpinnerAdapter);
 
+        //disables the button if the spinner is empty(meaning there are no categories to edit)
         if(categorySpinnerAdapter.getCount() == 0){
             updateButton.setEnabled(false);
         }
     }
 
+    //updates the category's info based on the values in the ui fields
     public void updateCategory(View v){
+        if(newBalText.getText().toString().equals("") || newNameText.getText().length()<1){
+            Snackbar emptyField = Snackbar.make(newBalText, "Please fill out all fields", LENGTH_SHORT);
+            emptyField.show();
+            return;
+        }
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override

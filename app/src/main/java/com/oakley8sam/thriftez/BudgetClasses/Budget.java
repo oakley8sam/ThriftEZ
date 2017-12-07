@@ -128,6 +128,7 @@ public class Budget extends RealmObject{
                 if(catToEdit.getCurrBalance() > catToEdit.getMaxBalance()) {
                     catToEdit.setCurrBalance(catToEdit.getMaxBalance());
                 }
+                updateFunds();
                 return newBal;
             }
         }

@@ -1,6 +1,7 @@
 package com.oakley8sam.thriftez;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.View;
@@ -13,9 +14,11 @@ import com.oakley8sam.thriftez.Helpers.DecimalLimitFilter;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+import static android.support.design.widget.Snackbar.LENGTH_SHORT;
+
 public class addCategoryActivity extends AppCompatActivity {
 
-    //instance variabes, realm and category name and amount
+    //instance variables, realm and category name and amount
     private EditText catName, catAmt;
     private Realm realm;
 
@@ -36,6 +39,12 @@ public class addCategoryActivity extends AppCompatActivity {
 
     //adds a new category to the budget, updating the realm database
     public void addNewCategory(View v){
+        if(catName.getText().length() < 1 || catAmt.getText().toString().equals("")){
+            Snackbar emptyField = Snackbar.make(catAmt, "Please fill out all fields", LENGTH_SHORT);
+            emptyField.show();
+            return;
+        }
+
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm bgrealm) {

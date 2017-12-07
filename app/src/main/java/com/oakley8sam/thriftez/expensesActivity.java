@@ -69,6 +69,7 @@ public class expensesActivity extends AppCompatActivity {
         categorySpinnerAdapter.notifyDataSetChanged();
         viewSpinner.setAdapter(categorySpinnerAdapter);
 
+        //disables button if the spinner is empty (meaning no categories to list)
         if(categorySpinnerAdapter.getCount() == 0){
             viewButton.setEnabled(false);
         }
